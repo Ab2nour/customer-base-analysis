@@ -15,6 +15,7 @@ seaborn = "^0.12.2"
 scikit-learn = "^1.2.1"
 nbdev = "^2.3.12"
 statsmodels = "^0.13.5"
+mlxtend = "^0.21.0"
 
 [tool.poetry.dev-dependencies]
 

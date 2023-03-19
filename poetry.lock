@@ -750,6 +750,26 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "mlxtend"
+version = "0.21.0"
+description = "Machine Learning Library Extensions"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+joblib = ">=0.13.2"
+matplotlib = ">=3.0.0"
+numpy = ">=1.16.2"
+pandas = ">=0.24.2"
+scikit-learn = ">=1.0.2"
+scipy = ">=1.2.1"
+
+[package.extras]
+docs = ["mkdocs"]
+testing = ["pytest"]
+
+[[package]]
 name = "mypy-extensions"
 version = "1.0.0"
 description = "Type system extensions for programs checked with the mypy type checker."
@@ -1550,7 +1570,7 @@ python-versions = ">=3.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.11"
-content-hash = "ad1951792318a09d6eae05de6afc58bfe1e53709f619071ef19b7824640bd8c0"
+content-hash = "b6ff9d775a6f17e99b3869fa78eb837c06276a8c89d667915f6aa7d0610f42ba"
 
 [metadata.files]
 anyio = []
@@ -1606,6 +1626,7 @@ markupsafe = []
 matplotlib = []
 matplotlib-inline = []
 mistune = []
+mlxtend = []
 mypy-extensions = []
 nbclassic = []
 nbclient = []
