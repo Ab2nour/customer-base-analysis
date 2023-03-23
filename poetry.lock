@@ -750,6 +750,26 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "mlxtend"
+version = "0.21.0"
+description = "Machine Learning Library Extensions"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+joblib = ">=0.13.2"
+matplotlib = ">=3.0.0"
+numpy = ">=1.16.2"
+pandas = ">=0.24.2"
+scikit-learn = ">=1.0.2"
+scipy = ">=1.2.1"
+
+[package.extras]
+docs = ["mkdocs"]
+testing = ["pytest"]
+
+[[package]]
 name = "mypy-extensions"
 version = "1.0.0"
 description = "Type system extensions for programs checked with the mypy type checker."
@@ -995,6 +1015,21 @@ description = "Utility library for gitignore style pattern matching of file path
 category = "main"
 optional = false
 python-versions = ">=3.7"
+
+[[package]]
+name = "patsy"
+version = "0.5.3"
+description = "A Python package for describing statistical models and for building design matrices."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+numpy = ">=1.4"
+six = "*"
+
+[package.extras]
+test = ["pytest", "pytest-cov", "scipy"]
 
 [[package]]
 name = "pexpect"
@@ -1370,6 +1405,26 @@ pure-eval = "*"
 tests = ["pytest", "typeguard", "pygments", "littleutils", "cython"]
 
 [[package]]
+name = "statsmodels"
+version = "0.13.5"
+description = "Statistical computations and models for Python"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+numpy = {version = ">=1.17", markers = "python_version != \"3.10\" or platform_system != \"Windows\" or platform_python_implementation == \"PyPy\""}
+packaging = ">=21.3"
+pandas = ">=0.25"
+patsy = ">=0.5.2"
+scipy = {version = ">=1.3", markers = "(python_version > \"3.9\" or platform_system != \"Windows\" or platform_machine != \"x86\") and python_version < \"3.12\""}
+
+[package.extras]
+build = ["cython (>=0.29.32)"]
+develop = ["cython (>=0.29.32)", "cython (>=0.29.32,<3.0.0)", "setuptools-scm[toml] (>=7.0.0,<7.1.0)", "oldest-supported-numpy (>=2022.4.18)", "matplotlib (>=3)", "colorama", "joblib", "jinja2", "pytest (>=7.0.1,<7.1.0)", "pytest-randomly", "pytest-xdist", "flake8", "isort", "pywinpty"]
+docs = ["sphinx", "nbconvert", "jupyter-client", "ipykernel", "matplotlib", "nbformat", "numpydoc", "pandas-datareader"]
+
+[[package]]
 name = "terminado"
 version = "0.17.1"
 description = "Tornado websocket backend for the Xterm.js Javascript terminal emulator library."
@@ -1515,7 +1570,7 @@ python-versions = ">=3.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.11"
-content-hash = "c8815e99a2b6cf12afb62cdbf3bf8238cd6b8642518cd5dc59bb6a5bfac9c509"
+content-hash = "b6ff9d775a6f17e99b3869fa78eb837c06276a8c89d667915f6aa7d0610f42ba"
 
 [metadata.files]
 anyio = []
@@ -1571,6 +1626,7 @@ markupsafe = []
 matplotlib = []
 matplotlib-inline = []
 mistune = []
+mlxtend = []
 mypy-extensions = []
 nbclassic = []
 nbclient = []
@@ -1586,6 +1642,7 @@ pandas = []
 pandocfilters = []
 parso = []
 pathspec = []
+patsy = []
 pexpect = []
 pickleshare = []
 pillow = []
@@ -1619,6 +1676,7 @@ six = []
 sniffio = []
 soupsieve = []
 stack-data = []
+statsmodels = []
 terminado = []
 threadpoolctl = []
 tinycss2 = []
