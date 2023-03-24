@@ -1567,10 +1567,30 @@ category = "main"
 optional = false
 python-versions = ">=3.7"
 
+[[package]]
+name = "xgboost"
+version = "1.7.4"
+description = "XGBoost Python Package"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+numpy = "*"
+scipy = "*"
+
+[package.extras]
+dask = ["dask", "pandas", "distributed"]
+datatable = ["datatable"]
+pandas = ["pandas"]
+plotting = ["graphviz", "matplotlib"]
+pyspark = ["pyspark", "scikit-learn", "cloudpickle"]
+scikit-learn = ["scikit-learn"]
+
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.11"
-content-hash = "b6ff9d775a6f17e99b3869fa78eb837c06276a8c89d667915f6aa7d0610f42ba"
+content-hash = "7c227886a1d6b53f0d8b426a65dc8994d27b03536a33418e06987f1a85dbe786"
 
 [metadata.files]
 anyio = []
@@ -1691,3 +1711,4 @@ webcolors = []
 webencodings = []
 websocket-client = []
 widgetsnbextension = []
+xgboost = []
