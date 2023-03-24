@@ -4,6 +4,12 @@
 
 ## Gérer Jupyter + git
 
+Supprimer les méta-données :
 ```bash
 poetry run nbdev_clean --fname presentation.ipynb
+```
+
+Supprimer les méta-données et les résultats des cellules :
+```bash
+poetry run nbdev_clean --fname presentation.ipynb --clear_all
 ```
