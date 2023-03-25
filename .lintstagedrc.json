@@ -1,4 +1,4 @@
 {
   "*.py": ["poetry run black"],
-  "*.ipynb": ["poetry run nbdev_clean --fname", "poetry run black"]
+  "*.ipynb": ["poetry run python scripts/clean_notebooks.py", "poetry run black"]
 }
