@@ -1,0 +1,22 @@
+,Modèle,Métrique,Valeur
+0,Régression simple,mse,5.447946922222299
+1,Régression simple,rmse,2.3340837436181032
+2,Régression simple,mae,1.4665834079331772
+3,Régression multiple,mse,3.899747938489649
+4,Régression multiple,rmse,1.9747779466283415
+5,Régression multiple,mae,1.409238628860361
+6,GLM Poisson,mse,4.154911219858815
+7,GLM Poisson,rmse,2.038359933833771
+8,GLM Poisson,mae,1.412055880296837
+9,Régression polynomiale,mse,3.9480406255814446
+10,Régression polynomiale,rmse,1.9869676961595135
+11,Régression polynomiale,mae,1.388757476051957
+12,PLS,mse,3.994447115505022
+13,PLS,rmse,1.9986112967520777
+14,PLS,mae,0.15667752921581268
+15,XGBoost,mse,0.15378780663013458
+16,XGBoost,rmse,0.3921578824520111
+17,XGBoost,mae,1.4098548289466648
+18,Réseau de Neurones,mse,0.15378780663013458
+19,Réseau de Neurones,rmse,0.3921578824520111
+20,Réseau de Neurones,mae,0.15667752921581268
