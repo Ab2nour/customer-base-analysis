@@ -19,6 +19,7 @@ mlxtend = "^0.21.0"
 xgboost = "^1.7.4"
 prince = "^0.9.0"
 tensorflow = "^2.12.0"
+keras = "^2.12.0"
 
 [tool.poetry.dev-dependencies]
 

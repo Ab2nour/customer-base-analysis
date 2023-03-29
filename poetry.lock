@@ -2084,7 +2084,7 @@ scikit-learn = ["scikit-learn"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.10,<3.12"
-content-hash = "0629f94cd5572abd506fa44c019c32e11166585552a6173a022e9167b0cc89e1"
+content-hash = "8d6f3dadab71d1e591102cb6983fa376ad4b7fe1cb86eea4318d82d0069d3cf9"
 
 [metadata.files]
 absl-py = []
