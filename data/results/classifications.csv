@@ -1,23 +1,23 @@
 ,Modèle,Métrique,Valeur
-0,Régression logistique,score_f1_classe0,0.9132290184921764
-1,Régression logistique,score_f1_classe1,0.46956521739130436
-2,Linear Discriminant Analysis,score_f1_classe0,0.9158345221112695
-3,Linear Discriminant Analysis,score_f1_classe1,0.4957264957264957
-4,Decision Tree,score_f1_classe0,0.8814055636896047
-5,Decision Tree,score_f1_classe1,0.4
-6,Random Forest,score_f1_classe0,0.9058171745152355
-7,Random Forest,score_f1_classe1,0.2916666666666667
-8,Support Vector Classifier,score_f1_classe0,0.9129213483146068
-9,Support Vector Classifier,score_f1_classe1,0.4150943396226415
-10,Naive Bayes (Bernoulli),score_f1_classe0,0.8968609865470851
-11,Naive Bayes (Bernoulli),score_f1_classe1,0.5369127516778525
-12,Naive Bayes (Complement),score_f1_classe0,0.861198738170347
-13,Naive Bayes (Complement),score_f1_classe1,0.5217391304347826
-14,k-NN,score_f1_classe0,0.9029649595687331
-15,k-NN,score_f1_classe1,0.05263157894736841
-16,XGBoost,score_f1_classe0,0.9108910891089108
-17,XGBoost,score_f1_classe1,0.4324324324324324
-18,Réseau de Neurones,score_f1_classe0,0.9166666666666667
-19,Réseau de Neurones,score_f1_classe1,0.5245901639344263
-20,Voting Classifier,score_f1_classe0,0.9180790960451977
-21,Voting Classifier,score_f1_classe1,0.4727272727272728
+0,Réseau de Neurones,score_f1_classe0,0.9237410071942446
+1,Réseau de Neurones,score_f1_classe1,0.5691056910569106
+2,LogisticRegression,score_f1_classe0,0.8358208955223881
+3,LogisticRegression,score_f1_classe1,0.8333333333333334
+4,LinearDiscriminantAnalysis,score_f1_classe0,0.8260869565217391
+5,LinearDiscriminantAnalysis,score_f1_classe1,0.8124999999999999
+6,DecisionTreeClassifier,score_f1_classe0,0.8088235294117647
+7,DecisionTreeClassifier,score_f1_classe1,0.8
+8,RandomForestClassifier,score_f1_classe0,0.8613138686131386
+9,RandomForestClassifier,score_f1_classe1,0.8527131782945736
+10,LinearSVC,score_f1_classe0,0.8201438848920863
+11,LinearSVC,score_f1_classe1,0.8031496062992126
+12,BernoulliNB,score_f1_classe0,0.7894736842105263
+13,BernoulliNB,score_f1_classe1,0.7192982456140351
+14,ComplementNB,score_f1_classe0,0.8085106382978724
+15,ComplementNB,score_f1_classe1,0.7839999999999999
+16,KNeighborsClassifier,score_f1_classe0,0.7887323943661971
+17,KNeighborsClassifier,score_f1_classe1,0.7580645161290324
+18,XGBClassifier,score_f1_classe0,0.9104477611940298
+19,XGBClassifier,score_f1_classe1,0.909090909090909
+20,VotingClassifier,score_f1_classe0,0.8592592592592593
+21,VotingClassifier,score_f1_classe1,0.8549618320610687
