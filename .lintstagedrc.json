@@ -1,4 +1,10 @@
 {
-  "*.py": ["poetry run black"],
-  "*.ipynb": ["poetry run python scripts/clean_notebooks.py", "poetry run black"]
+  "*.py": [
+    "poetry run black"
+  ],
+  "*.ipynb": [
+    "poetry run python scripts/clean_notebooks.py",
+    "poetry run nbqa isort --float-to-top",
+    "poetry run black"
+  ]
 }
