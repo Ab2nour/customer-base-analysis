@@ -1,23 +1,23 @@
-,Modèle,Métrique,Valeur
-0,Réseau de Neurones,score_f1_classe0,0.9237410071942446
-1,Réseau de Neurones,score_f1_classe1,0.5691056910569106
-2,LogisticRegression,score_f1_classe0,0.8358208955223881
-3,LogisticRegression,score_f1_classe1,0.8333333333333334
-4,LinearDiscriminantAnalysis,score_f1_classe0,0.8260869565217391
-5,LinearDiscriminantAnalysis,score_f1_classe1,0.8124999999999999
-6,DecisionTreeClassifier,score_f1_classe0,0.8088235294117647
-7,DecisionTreeClassifier,score_f1_classe1,0.8
-8,RandomForestClassifier,score_f1_classe0,0.8613138686131386
-9,RandomForestClassifier,score_f1_classe1,0.8527131782945736
-10,LinearSVC,score_f1_classe0,0.8201438848920863
-11,LinearSVC,score_f1_classe1,0.8031496062992126
-12,BernoulliNB,score_f1_classe0,0.7894736842105263
-13,BernoulliNB,score_f1_classe1,0.7192982456140351
-14,ComplementNB,score_f1_classe0,0.8085106382978724
-15,ComplementNB,score_f1_classe1,0.7839999999999999
-16,KNeighborsClassifier,score_f1_classe0,0.7887323943661971
-17,KNeighborsClassifier,score_f1_classe1,0.7580645161290324
-18,XGBClassifier,score_f1_classe0,0.9104477611940298
-19,XGBClassifier,score_f1_classe1,0.909090909090909
-20,VotingClassifier,score_f1_classe0,0.8592592592592593
-21,VotingClassifier,score_f1_classe1,0.8549618320610687
+Modèle,Métrique,Valeur
+Réseau de Neurones,score_f1_classe0,0.9237410071942446
+Réseau de Neurones,score_f1_classe1,0.5691056910569106
+LogisticRegression,score_f1_classe0,0.8358208955223881
+LogisticRegression,score_f1_classe1,0.8333333333333334
+LinearDiscriminantAnalysis,score_f1_classe0,0.8260869565217391
+LinearDiscriminantAnalysis,score_f1_classe1,0.8124999999999999
+DecisionTreeClassifier,score_f1_classe0,0.8088235294117647
+DecisionTreeClassifier,score_f1_classe1,0.8
+RandomForestClassifier,score_f1_classe0,0.8613138686131386
+RandomForestClassifier,score_f1_classe1,0.8527131782945736
+LinearSVC,score_f1_classe0,0.8201438848920863
+LinearSVC,score_f1_classe1,0.8031496062992126
+BernoulliNB,score_f1_classe0,0.7894736842105263
+BernoulliNB,score_f1_classe1,0.7192982456140351
+ComplementNB,score_f1_classe0,0.8085106382978724
+ComplementNB,score_f1_classe1,0.7839999999999999
+KNeighborsClassifier,score_f1_classe0,0.7887323943661971
+KNeighborsClassifier,score_f1_classe1,0.7580645161290324
+XGBClassifier,score_f1_classe0,0.9104477611940298
+XGBClassifier,score_f1_classe1,0.909090909090909
+VotingClassifier,score_f1_classe0,0.8592592592592593
+VotingClassifier,score_f1_classe1,0.8549618320610687

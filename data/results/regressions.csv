@@ -1,22 +1,22 @@
-,Modèle,Métrique,Valeur
-0,Régression simple,mse,5.853872571999743
-1,Régression simple,rmse,2.419477747779413
-2,Régression simple,mae,1.8268826341039772
-3,Régression multiple,mse,3.899747938489649
-4,Régression multiple,rmse,1.9747779466283415
-5,Régression multiple,mae,1.409238628860361
-6,GLM Poisson,mse,4.154911219858815
-7,GLM Poisson,rmse,2.038359933833771
-8,GLM Poisson,mae,1.412055880296837
-9,Régression polynomiale,mse,5.447946922222299
-10,Régression polynomiale,rmse,2.3340837436181032
-11,Régression polynomiale,mae,1.4665834079331772
-12,Régression PLS,mse,3.994447115505022
-13,Régression PLS,rmse,1.9986112967520777
-14,Régression PLS,mae,1.4098548289466648
-15,XGBoost,mse,3.173439848592299
-16,XGBoost,rmse,1.7814151252844743
-17,XGBoost,mae,1.1835928228490218
-18,Réseau de Neurones,mse,32.347347259521484
-19,Réseau de Neurones,rmse,5.687472820281982
-20,Réseau de Neurones,mae,4.737454891204834
+Modèle,Métrique,Valeur
+Régression simple,mse,5.853872571999743
+Régression simple,rmse,2.419477747779413
+Régression simple,mae,1.8268826341039772
+Régression multiple,mse,3.899747938489649
+Régression multiple,rmse,1.9747779466283415
+Régression multiple,mae,1.409238628860361
+GLM Poisson,mse,4.154911219858815
+GLM Poisson,rmse,2.038359933833771
+GLM Poisson,mae,1.412055880296837
+Régression polynomiale,mse,5.447946922222299
+Régression polynomiale,rmse,2.3340837436181032
+Régression polynomiale,mae,1.4665834079331772
+Régression PLS,mse,3.994447115505022
+Régression PLS,rmse,1.9986112967520777
+Régression PLS,mae,1.4098548289466648
+XGBoost,mse,3.173439848592299
+XGBoost,rmse,1.7814151252844743
+XGBoost,mae,1.1835928228490218
+Réseau de Neurones,mse,32.347347259521484
+Réseau de Neurones,rmse,5.687472820281982
+Réseau de Neurones,mae,4.737454891204834
