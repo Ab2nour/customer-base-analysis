@@ -20,8 +20,13 @@ xgboost = "^1.7.4"
 prince = "^0.9.0"
 tensorflow = "^2.12.0"
 keras = "^2.12.0"
+nbqa = "^1.7.0"
+isort = "^5.12.0"
 
 [tool.poetry.dev-dependencies]
+
+[tool.isort]
+profile = "black"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

@@ -134,6 +134,18 @@ tests-no-zope = ["hypothesis", "pympler", "pytest (>=4.3.0)", "pytest-xdist", "c
 tests_no_zope = ["hypothesis", "pympler", "pytest (>=4.3.0)", "pytest-xdist", "cloudpickle", "mypy (>=0.971,<0.990)", "pytest-mypy-plugins"]
 
 [[package]]
+name = "autopep8"
+version = "2.0.2"
+description = "A tool that automatically formats Python code to conform to the PEP 8 style guide"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+pycodestyle = ">=2.10.0"
+tomli = {version = "*", markers = "python_version < \"3.11\""}
+
+[[package]]
 name = "backcall"
 version = "0.2.0"
 description = "Specifications for callback functions passed in to an API"
@@ -612,6 +624,20 @@ python-versions = ">=3.7"
 
 [package.dependencies]
 arrow = ">=0.15.0"
+
+[[package]]
+name = "isort"
+version = "5.12.0"
+description = "A Python utility / library to sort Python imports."
+category = "main"
+optional = false
+python-versions = ">=3.8.0"
+
+[package.extras]
+colors = ["colorama (>=0.4.3)"]
+requirements-deprecated-finder = ["pip-api", "pipreqs"]
+pipfile-deprecated-finder = ["pip-shims (>=0.5.2)", "pipreqs", "requirementslib"]
+plugins = ["setuptools"]
 
 [[package]]
 name = "jax"
@@ -1121,6 +1147,23 @@ docs = ["myst-parser", "pydata-sphinx-theme", "sphinx", "sphinxcontrib-github-al
 test = ["pep440", "pre-commit", "pytest", "testpath"]
 
 [[package]]
+name = "nbqa"
+version = "1.7.0"
+description = "Run any standard Python code quality tool on a Jupyter Notebook"
+category = "main"
+optional = false
+python-versions = ">=3.8.0"
+
+[package.dependencies]
+autopep8 = ">=1.5"
+ipython = ">=7.8.0"
+tokenize-rt = ">=3.2.0"
+tomli = "*"
+
+[package.extras]
+toolchain = ["black", "blacken-docs", "flake8", "isort", "jupytext", "mypy", "pylint", "pyupgrade", "ruff"]
+
+[[package]]
 name = "nest-asyncio"
 version = "1.5.6"
 description = "Patch asyncio to allow nested event loops"
@@ -1413,6 +1456,14 @@ python-versions = "*"
 
 [package.dependencies]
 pyasn1 = ">=0.4.6,<0.5.0"
+
+[[package]]
+name = "pycodestyle"
+version = "2.10.0"
+description = "Python style guide checker"
+category = "main"
+optional = false
+python-versions = ">=3.6"
 
 [[package]]
 name = "pycparser"
@@ -2084,7 +2135,7 @@ scikit-learn = ["scikit-learn"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.10,<3.12"
-content-hash = "8d6f3dadab71d1e591102cb6983fa376ad4b7fe1cb86eea4318d82d0069d3cf9"
+content-hash = "94d40b6ffe1bd8409691bd052972b52758d06c5bba5c3151f9c6313727ccb7ee"
 
 [metadata.files]
 absl-py = []
@@ -2097,6 +2148,7 @@ arrow = []
 asttokens = []
 astunparse = []
 attrs = []
+autopep8 = []
 backcall = []
 beautifulsoup4 = []
 black = []
@@ -2134,6 +2186,7 @@ ipython = []
 ipython-genutils = []
 ipywidgets = []
 isoduration = []
+isort = []
 jax = []
 jedi = []
 jinja2 = []
@@ -2165,6 +2218,7 @@ nbclient = []
 nbconvert = []
 nbdev = []
 nbformat = []
+nbqa = []
 nest-asyncio = []
 notebook = []
 notebook-shim = []
@@ -2190,6 +2244,7 @@ ptyprocess = []
 pure-eval = []
 pyasn1 = []
 pyasn1-modules = []
+pycodestyle = []
 pycparser = []
 pygments = []
 pyparsing = []
