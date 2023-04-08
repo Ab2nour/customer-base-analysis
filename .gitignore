@@ -133,3 +133,6 @@ dmypy.json
 
 # Node packages
 node_modules/
+
+# Catboost
+catboost_info/
