@@ -41,3 +41,22 @@ var_categoriques = [  # Complain was removed
     "AcceptedCmp5",
     "Response",
 ]
+
+var_cat_ohe = [
+    "Education",
+    "Marital_Status",
+    "Kidhome",
+    "Teenhome",
+    "NbAcceptedCampaigns",
+    "NbChildren",
+]
+
+var_cat_non_ohe = [
+    "AcceptedCmp1",
+    "AcceptedCmp2",
+    "AcceptedCmp3",
+    "AcceptedCmp4",
+    "AcceptedCmp5",
+    "Response",
+    "HasAcceptedCampaigns",
+]
