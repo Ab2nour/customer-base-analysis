@@ -37,7 +37,7 @@ Supprimer les méta-données et les résultats des cellules :
 poetry run nbdev_clean --fname presentation.ipynb --clear_all
 ```
 
-## Formattage
+## Formatage
 
 ```bash
 poetry run black
