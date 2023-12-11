@@ -1,4 +1,4 @@
-from sklearn.metrics import mean_squared_error, mean_absolute_error
+from sklearn.metrics import mean_absolute_error, mean_squared_error
 
 
 def affiche_score(modele, y_test, y_pred) -> None:

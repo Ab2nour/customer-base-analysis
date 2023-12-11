@@ -1,6 +1,5 @@
-import sys
 import subprocess
-
+import sys
 
 args = sys.argv[1:]
 
