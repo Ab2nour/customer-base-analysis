@@ -3,7 +3,7 @@ Projet de M1 Mathématiques Appliquées et Statistiques, dont le sujet est :
 > **Analyse et segmentation de clientèle d'un magasin avec campagnes de marketing**
 
 ![Résultats de modèles de classification](
-img/mse-rmse-mae-models.png
+assets/img/mse-rmse-mae-models.png
 "Résultats de modèles de classification"
 )
 
@@ -13,14 +13,14 @@ img/mse-rmse-mae-models.png
 
 Voici l'organisation des différents dossiers du projet :
 
+[`📂 assets`](assets)
+> Contient des ressources liées au projet, telles que des images.
+
 [`📂 data`](data)
 > Contient le jeu de données, différentes versions du jeu de données transformé, ainsi que tous les résultats sauvegardés.
 
 [`📂 docs`](docs)
 > Contient la documentation du projet.
-
-[`📂 img`](img)
-> Contient des illustrations du projet.
 
 [`📂 scripts`](scripts)
 > Contient des scripts sans rapport direct avec le projet, afin d'en faciliter la maintenance.
