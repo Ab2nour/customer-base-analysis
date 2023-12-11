@@ -13,16 +13,19 @@ img/mse-rmse-mae-models.png
 
 Voici l'organisation des différents dossiers du projet :
 
-[`📂 data`](https://github.com/Ab2nour/projet-transverse/tree/main/data)
+[`📂 data`](data)
 > Contient le jeu de données, différentes versions du jeu de données transformé, ainsi que tous les résultats sauvegardés.
 
-[`📂 img`](https://github.com/Ab2nour/projet-transverse/tree/main/img)
+[`📂 docs`](docs)
+> Contient la documentation du projet.
+
+[`📂 img`](img)
 > Contient des illustrations du projet.
 
-[`📂 scripts`](https://github.com/Ab2nour/projet-transverse/tree/main/scripts)
+[`📂 scripts`](scripts)
 > Contient des scripts sans rapport direct avec le projet, afin d'en faciliter la maintenance.
 
-[`📂 src`](https://github.com/Ab2nour/projet-transverse/tree/main/src)
+[`📂 src`](src)
 > Contient le code source du projet.
 
 ## Gérer Jupyter + git

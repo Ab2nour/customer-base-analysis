@@ -28,6 +28,12 @@ lightgbm = "^3.3.5"
 
 [tool.poetry.dev-dependencies]
 
+[tool.poetry.group.dev.dependencies]
+sphinx = "^7.2.6"
+sphinx-book-theme = "^1.0.1"
+myst-parser = "^2.0.0"
+myst-nb = "^1.0.0"
+
 [tool.isort]
 profile = "black"
 
