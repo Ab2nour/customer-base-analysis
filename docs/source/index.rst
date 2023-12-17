@@ -17,7 +17,7 @@ Welcome to Customer Base Analysis's documentation!
    :maxdepth: 2
    :caption: 📖 Reference
 
-   modules.rst
+   docstring/modules.rst
 
 
 Indices and tables
