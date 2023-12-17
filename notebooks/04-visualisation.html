@@ -1,0 +1,960 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Visualisation &#8212; Customer Base Analysis  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=19b21d1c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/04-visualisation';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Analyse factorielle" href="05-analyse-factorielle.html" />
+    <link rel="prev" title="Feature Engineering" href="03-feature-engineering.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Customer Base Analysis  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">📊 Analyse préliminaire</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-analyse-exploratoire.html">Analyse exploratoire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-nettoyage.html">Nettoyage des données</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-feature-engineering.html">Feature Engineering</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Visualisation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📊 Analyse factorielle et ANOVA</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05-analyse-factorielle.html">Analyse factorielle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-anova.html">ANOVA</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📊 Segmentation des clients</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="07-clustering.html">Clustering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📊 Modélisation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="08-regressions.html">Régression (v1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08a-refonte-regressions.html">Refonte régression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08b-bilan-regression.html">Bilan régression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-classification.html">Classification</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📊 Expérimentations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="10-experimentations.html">Expérimentations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📖 Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../docstring/modules.html">Customer Base Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../docstring/src.html">src package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/04-visualisation.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Visualisation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-des-outils-jeu-de-donnees">Import des outils / jeu de données</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-globales">Variables globales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Visualisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relation-avec-la-variable-cible-response">Relation avec la variable cible (Response)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphiques-supplementaires">Graphiques supplémentaires</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#todo">todo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrice-de-correlation">Matrice de corrélation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">todo</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="visualisation">
+<h1>Visualisation<a class="headerlink" href="#visualisation" title="Link to this heading">#</a></h1>
+<section id="import-des-outils-jeu-de-donnees">
+<h2>Import des outils / jeu de données<a class="headerlink" href="#import-des-outils-jeu-de-donnees" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos">2</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos">3</span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="linenos">4</span>
+<span class="linenos">5</span><span class="kn">from</span> <span class="nn">src.config</span> <span class="kn">import</span> <span class="n">data_folder</span>
+<span class="linenos">6</span><span class="kn">from</span> <span class="nn">src.constants</span> <span class="kn">import</span> <span class="n">var_categoriques</span><span class="p">,</span> <span class="n">var_numeriques</span>
+<span class="linenos">7</span><span class="kn">from</span> <span class="nn">src.utils</span> <span class="kn">import</span> <span class="n">init_notebook</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">init_notebook</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+<span class="linenos">2</span>    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data_folder</span><span class="si">}</span><span class="s2">/data-cleaned-feature-engineering.csv&quot;</span><span class="p">,</span>
+<span class="linenos">3</span>    <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span>
+<span class="linenos">4</span>    <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span>
+<span class="linenos">5</span>    <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year_Birth</th>
+      <th>Education</th>
+      <th>Marital_Status</th>
+      <th>Income</th>
+      <th>Kidhome</th>
+      <th>Teenhome</th>
+      <th>Dt_Customer</th>
+      <th>Recency</th>
+      <th>MntWines</th>
+      <th>MntFruits</th>
+      <th>...</th>
+      <th>NumWebVisitsMonth</th>
+      <th>AcceptedCmp3</th>
+      <th>AcceptedCmp4</th>
+      <th>AcceptedCmp5</th>
+      <th>AcceptedCmp1</th>
+      <th>AcceptedCmp2</th>
+      <th>Response</th>
+      <th>NbAcceptedCampaigns</th>
+      <th>HasAcceptedCampaigns</th>
+      <th>NbChildren</th>
+    </tr>
+    <tr>
+      <th>ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5524</th>
+      <td>1957</td>
+      <td>Graduation</td>
+      <td>Single</td>
+      <td>58138.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2012-09-04</td>
+      <td>58</td>
+      <td>635</td>
+      <td>88</td>
+      <td>...</td>
+      <td>7</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2174</th>
+      <td>1954</td>
+      <td>Graduation</td>
+      <td>Single</td>
+      <td>46344.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2014-03-08</td>
+      <td>38</td>
+      <td>11</td>
+      <td>1</td>
+      <td>...</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>False</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4141</th>
+      <td>1965</td>
+      <td>Graduation</td>
+      <td>Together</td>
+      <td>71613.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2013-08-21</td>
+      <td>26</td>
+      <td>426</td>
+      <td>49</td>
+      <td>...</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6182</th>
+      <td>1984</td>
+      <td>Graduation</td>
+      <td>Together</td>
+      <td>26646.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2014-02-10</td>
+      <td>26</td>
+      <td>11</td>
+      <td>4</td>
+      <td>...</td>
+      <td>6</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>False</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>5324</th>
+      <td>1981</td>
+      <td>PhD</td>
+      <td>Married</td>
+      <td>58293.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2014-01-19</td>
+      <td>94</td>
+      <td>173</td>
+      <td>43</td>
+      <td>...</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>False</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 28 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="variables-globales">
+<h2>Variables globales<a class="headerlink" href="#variables-globales" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">var_categoriques_extra</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;NbAcceptedCampaigns&quot;</span><span class="p">,</span> <span class="s2">&quot;HasAcceptedCampaigns&quot;</span><span class="p">,</span> <span class="s2">&quot;NbChildren&quot;</span><span class="p">]</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">var_categoriques_fe</span> <span class="o">=</span> <span class="p">(</span>
+<span class="linenos">4</span>    <span class="n">var_categoriques</span> <span class="o">+</span> <span class="n">var_categoriques_extra</span>
+<span class="linenos">5</span><span class="p">)</span>  <span class="c1">## todo: sauvegarder toutes ces listes dans un pd.Series et les lire</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">df</span><span class="p">[</span><span class="n">var_categoriques_fe</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">var_categoriques_fe</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h2>Visualisation<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+</section>
+<section id="relation-avec-la-variable-cible-response">
+<h2>Relation avec la variable cible (Response)<a class="headerlink" href="#relation-avec-la-variable-cible-response" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">var_numeriques</span><span class="p">:</span>
+<span class="linenos"> 2</span>    <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="linenos"> 3</span>    <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">var</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Response&quot;</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="linenos"> 4</span>    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span>
+<span class="linenos"> 5</span>        <span class="n">df</span><span class="p">,</span>
+<span class="linenos"> 6</span>        <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">var</span><span class="p">],</span>
+<span class="linenos"> 7</span>        <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos"> 8</span>        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="linenos"> 9</span>        <span class="n">hue</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Response&quot;</span><span class="p">],</span>
+<span class="linenos">10</span>        <span class="n">stat</span><span class="o">=</span><span class="s2">&quot;probability&quot;</span><span class="p">,</span>
+<span class="linenos">11</span>        <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="linenos">12</span>    <span class="p">)</span>
+<span class="linenos">13</span>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c7043d0a1b483fd7199014c2aaca2446018de3178671e53b6b52d4c5a61e7309.png" src="../_images/c7043d0a1b483fd7199014c2aaca2446018de3178671e53b6b52d4c5a61e7309.png" />
+<img alt="../_images/8c452f489391df813e5c28636e7af16471f0cd9497b2f2bad4dde4363a98373c.png" src="../_images/8c452f489391df813e5c28636e7af16471f0cd9497b2f2bad4dde4363a98373c.png" />
+<img alt="../_images/07f010ae7a24a07e4d5badb16c6eee90c7e4b1a46da76bf11494773a16a5e86e.png" src="../_images/07f010ae7a24a07e4d5badb16c6eee90c7e4b1a46da76bf11494773a16a5e86e.png" />
+<img alt="../_images/e760943a07ce65ccda7c56ab7b59a12c8d4455230da908df7fe896b1665d22b8.png" src="../_images/e760943a07ce65ccda7c56ab7b59a12c8d4455230da908df7fe896b1665d22b8.png" />
+<img alt="../_images/f3d6f0b8901d5f9561379a9a414619709bf2b1c9b7958f36e3f22660c4764398.png" src="../_images/f3d6f0b8901d5f9561379a9a414619709bf2b1c9b7958f36e3f22660c4764398.png" />
+<img alt="../_images/0bf3d986b8ba4715d9f95fcd60ab108fd76ae9ccba99bcda74b4116119d2fd7b.png" src="../_images/0bf3d986b8ba4715d9f95fcd60ab108fd76ae9ccba99bcda74b4116119d2fd7b.png" />
+<img alt="../_images/febe8043ef5e583431d819902738f8101004bd00c7d295d2b68f81b894713567.png" src="../_images/febe8043ef5e583431d819902738f8101004bd00c7d295d2b68f81b894713567.png" />
+<img alt="../_images/f3c550c2bc0fbf750f50e66ac9bd68a948b7baf251517368c3bb6e0e918c0cdb.png" src="../_images/f3c550c2bc0fbf750f50e66ac9bd68a948b7baf251517368c3bb6e0e918c0cdb.png" />
+<img alt="../_images/581ff4f6ed9dbc8541d0e0bf139f2eb408b4da1d15406f5ad4c55a919ad6c0df.png" src="../_images/581ff4f6ed9dbc8541d0e0bf139f2eb408b4da1d15406f5ad4c55a919ad6c0df.png" />
+<img alt="../_images/99e6569e7d34f0e669a7a35b4f47144047471d183bebfe4da8e1fc4db0e7830a.png" src="../_images/99e6569e7d34f0e669a7a35b4f47144047471d183bebfe4da8e1fc4db0e7830a.png" />
+<img alt="../_images/120c0726c5a9f98659987885d3fa0c99208209c68b718574450486ca1a2c90dc.png" src="../_images/120c0726c5a9f98659987885d3fa0c99208209c68b718574450486ca1a2c90dc.png" />
+<img alt="../_images/344e94c1f0be66909305fbfcc52072c48ad035ca5547cfff77ce7df7df6ba33a.png" src="../_images/344e94c1f0be66909305fbfcc52072c48ad035ca5547cfff77ce7df7df6ba33a.png" />
+<img alt="../_images/21b9d4ab1f166466809973962a1b36f0fe17015f6c152d526fab9b8dbf905cc0.png" src="../_images/21b9d4ab1f166466809973962a1b36f0fe17015f6c152d526fab9b8dbf905cc0.png" />
+<img alt="../_images/f51e46e29bbac8f780a2976e4eac7affc877647236da2059aabf07676304bb2f.png" src="../_images/f51e46e29bbac8f780a2976e4eac7affc877647236da2059aabf07676304bb2f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">var_categoriques_fe</span><span class="p">:</span>
+<span class="linenos"> 2</span>    <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span>    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span>
+<span class="linenos"> 5</span>        <span class="n">df</span><span class="p">,</span>
+<span class="linenos"> 6</span>        <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">var</span><span class="p">],</span>
+<span class="linenos"> 7</span>        <span class="n">hue</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Response&quot;</span><span class="p">],</span>
+<span class="linenos"> 8</span>        <span class="n">multiple</span><span class="o">=</span><span class="s2">&quot;dodge&quot;</span><span class="p">,</span>
+<span class="linenos"> 9</span>        <span class="n">shrink</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="linenos">10</span>        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="linenos">11</span>    <span class="p">)</span>
+<span class="linenos">12</span>    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span>
+<span class="linenos">13</span>        <span class="n">df</span><span class="p">,</span>
+<span class="linenos">14</span>        <span class="n">hue</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">var</span><span class="p">],</span>
+<span class="linenos">15</span>        <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Response&quot;</span><span class="p">],</span>
+<span class="linenos">16</span>        <span class="n">multiple</span><span class="o">=</span><span class="s2">&quot;dodge&quot;</span><span class="p">,</span>
+<span class="linenos">17</span>        <span class="n">shrink</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="linenos">18</span>        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="linenos">19</span>    <span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/13a18c2eedcb93adc4f4a1ac4b324fcf35301bb03f7293593de8c4edd7c6a698.png" src="../_images/13a18c2eedcb93adc4f4a1ac4b324fcf35301bb03f7293593de8c4edd7c6a698.png" />
+<img alt="../_images/407b6a36f7c0067f8e8e7ed3ad7980ed3f178b3e83cd4e704e53dd582eeefd2c.png" src="../_images/407b6a36f7c0067f8e8e7ed3ad7980ed3f178b3e83cd4e704e53dd582eeefd2c.png" />
+<img alt="../_images/996d8052856da0c847e56345aaf3f471c18704a1bc5e0362f58ec8bd8b7b6bf4.png" src="../_images/996d8052856da0c847e56345aaf3f471c18704a1bc5e0362f58ec8bd8b7b6bf4.png" />
+<img alt="../_images/79b1a9b09b63e6a2b93bc22c6a6d11c074444c704506a449bd39d0c388800b1c.png" src="../_images/79b1a9b09b63e6a2b93bc22c6a6d11c074444c704506a449bd39d0c388800b1c.png" />
+<img alt="../_images/ad25ee246f9f1fdc9d90945c7effaa17030ba463cc2f93084778490862948a03.png" src="../_images/ad25ee246f9f1fdc9d90945c7effaa17030ba463cc2f93084778490862948a03.png" />
+<img alt="../_images/fe1a308275a5bcbc5e6ab9462b7e18ff2097171ec16ba2736e600191bae39d25.png" src="../_images/fe1a308275a5bcbc5e6ab9462b7e18ff2097171ec16ba2736e600191bae39d25.png" />
+<img alt="../_images/4f63054074da4dfc20d45b46926e3c2deb9027d273c3da3227d217a08e638b38.png" src="../_images/4f63054074da4dfc20d45b46926e3c2deb9027d273c3da3227d217a08e638b38.png" />
+<img alt="../_images/81a395229e0b81670eb59b185ed65066f8b30939810804fd2d55833ae1ce9fb9.png" src="../_images/81a395229e0b81670eb59b185ed65066f8b30939810804fd2d55833ae1ce9fb9.png" />
+<img alt="../_images/9fa8d165ffd05b58cfbd9b933e33615b524eddec471aaf5a70573e0ae984c3d0.png" src="../_images/9fa8d165ffd05b58cfbd9b933e33615b524eddec471aaf5a70573e0ae984c3d0.png" />
+<img alt="../_images/043d7446743bd79f776a7ca02d1c9e3db62f3d643d507196d91f8e200374ae5c.png" src="../_images/043d7446743bd79f776a7ca02d1c9e3db62f3d643d507196d91f8e200374ae5c.png" />
+<img alt="../_images/37ed07aee6dfdd6f27f8d77a46b5ade2a2f043471899c8e40268be9f8acdd231.png" src="../_images/37ed07aee6dfdd6f27f8d77a46b5ade2a2f043471899c8e40268be9f8acdd231.png" />
+<img alt="../_images/e6df8888ebaa127319df70df9dfc315e619a5aabb0b029f5cdf51695059444a2.png" src="../_images/e6df8888ebaa127319df70df9dfc315e619a5aabb0b029f5cdf51695059444a2.png" />
+<img alt="../_images/ef04807d853de21a736d6e517bda047a4d514b3f56d1a3e6fff5d9752b5062a3.png" src="../_images/ef04807d853de21a736d6e517bda047a4d514b3f56d1a3e6fff5d9752b5062a3.png" />
+</div>
+</div>
+</section>
+<section id="graphiques-supplementaires">
+<h2>Graphiques supplémentaires<a class="headerlink" href="#graphiques-supplementaires" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Revenu en fonction du nombre de campagnes acceptées&quot;</span><span class="p">)</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Income&quot;</span><span class="p">],</span> <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;NbAcceptedCampaigns&quot;</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="linenos"> 6</span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span>
+<span class="linenos"> 7</span>    <span class="n">df</span><span class="p">,</span>
+<span class="linenos"> 8</span>    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Income&quot;</span><span class="p">,</span>
+<span class="linenos"> 9</span>    <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;NbAcceptedCampaigns&quot;</span><span class="p">,</span>
+<span class="linenos">10</span>    <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">11</span>    <span class="n">stat</span><span class="o">=</span><span class="s2">&quot;probability&quot;</span><span class="p">,</span>
+<span class="linenos">12</span>    <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="linenos">13</span>    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="linenos">14</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Income&#39;, ylabel=&#39;Probability&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/d5e402b6da9f83aa451f1048ac461d52bf97da4ca95a46d79a816512198fdad2.png" src="../_images/d5e402b6da9f83aa451f1048ac461d52bf97da4ca95a46d79a816512198fdad2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Revenu en fonction du nombre de campagnes acceptées&quot;</span><span class="p">)</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Income&quot;</span><span class="p">],</span> <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;HasAcceptedCampaigns&quot;</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="linenos"> 6</span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span>
+<span class="linenos"> 7</span>    <span class="n">df</span><span class="p">,</span>
+<span class="linenos"> 8</span>    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Income&quot;</span><span class="p">,</span>
+<span class="linenos"> 9</span>    <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;HasAcceptedCampaigns&quot;</span><span class="p">,</span>
+<span class="linenos">10</span>    <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">11</span>    <span class="n">stat</span><span class="o">=</span><span class="s2">&quot;probability&quot;</span><span class="p">,</span>
+<span class="linenos">12</span>    <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="linenos">13</span>    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="linenos">14</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Income&#39;, ylabel=&#39;Probability&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/c0d81f5baf662ff7bf9e0b206354a346d2e0e363e1d1582f71ddface2a7fd624.png" src="../_images/c0d81f5baf662ff7bf9e0b206354a346d2e0e363e1d1582f71ddface2a7fd624.png" />
+</div>
+</div>
+<section id="todo">
+<h3>todo<a class="headerlink" href="#todo" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span>
+<span class="linenos">2</span>    <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Education&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;HasAcceptedCampaigns&quot;</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="s2">&quot;dodge&quot;</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.8</span>
+<span class="linenos">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Education&#39;, ylabel=&#39;Count&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/8172ebe26820bd32ebe734e1e69dd311dffead7f0b2f7af57bcb2fc5b615a630.png" src="../_images/8172ebe26820bd32ebe734e1e69dd311dffead7f0b2f7af57bcb2fc5b615a630.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span>
+<span class="linenos">2</span>    <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+<span class="linenos">3</span>    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;NbChildren&quot;</span><span class="p">,</span>
+<span class="linenos">4</span>    <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;Response&quot;</span><span class="p">,</span>
+<span class="linenos">5</span>    <span class="n">multiple</span><span class="o">=</span><span class="s2">&quot;dodge&quot;</span><span class="p">,</span>
+<span class="linenos">6</span>    <span class="n">discrete</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">7</span>    <span class="n">shrink</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+<span class="linenos">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;NbChildren&#39;, ylabel=&#39;Count&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/143047e806b74906a7c629ff2f02a004bf5461aeaa0ca31ff8695c56065b920e.png" src="../_images/143047e806b74906a7c629ff2f02a004bf5461aeaa0ca31ff8695c56065b920e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span>
+<span class="linenos">2</span>    <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+<span class="linenos">3</span>    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;NbChildren&quot;</span><span class="p">,</span>
+<span class="linenos">4</span>    <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;HasAcceptedCampaigns&quot;</span><span class="p">,</span>
+<span class="linenos">5</span>    <span class="n">multiple</span><span class="o">=</span><span class="s2">&quot;dodge&quot;</span><span class="p">,</span>
+<span class="linenos">6</span>    <span class="n">discrete</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">7</span>    <span class="n">shrink</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+<span class="linenos">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;NbChildren&#39;, ylabel=&#39;Count&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/1a73095471288f7de2ee3ae62054e8dae1f2763d458142015d719f21db10d341.png" src="../_images/1a73095471288f7de2ee3ae62054e8dae1f2763d458142015d719f21db10d341.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="matrice-de-correlation">
+<h2>Matrice de corrélation<a class="headerlink" href="#matrice-de-correlation" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="linenos">2</span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+<span class="linenos">3</span>    <span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">()[</span><span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">],</span>
+<span class="linenos">4</span>    <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">5</span>    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;BrBG&quot;</span><span class="p">,</span>
+<span class="linenos">6</span>    <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="linenos">7</span>    <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="linenos">8</span>    <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+<span class="linenos">9</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2065/1235220098.py:3: FutureWarning: The default value of numeric_only in DataFrame.corr is deprecated. In a future version, it will default to False. Select only valid columns or specify the value of numeric_only to silence this warning.
+  df.corr()[df.corr().abs() &gt; 0.5],
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="../_images/5d4d83b1d4e69d76ae1677bcf01247d72c01c017439f7d909442c45aba4cdd11.png" src="../_images/5d4d83b1d4e69d76ae1677bcf01247d72c01c017439f7d909442c45aba4cdd11.png" />
+</div>
+</div>
+</section>
+<section id="id2">
+<h2>todo<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">## Exemple de graphique sur plusieurs colonnes</span>
+<span class="linenos">2</span><span class="c1">## sns.displot(</span>
+<span class="linenos">3</span><span class="c1">#     data=df,</span>
+<span class="linenos">4</span><span class="c1">#     x=&quot;Marital_Status&quot;,</span>
+<span class="linenos">5</span><span class="c1">#     hue=&quot;Response&quot;,</span>
+<span class="linenos">6</span><span class="c1">#     col=&quot;Kidhome&quot;,</span>
+<span class="linenos">7</span><span class="c1">#     multiple=&quot;dodge&quot;,</span>
+<span class="linenos">8</span><span class="c1">#     shrink=0.8,</span>
+<span class="linenos">9</span><span class="c1">## )</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03-feature-engineering.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Feature Engineering</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05-analyse-factorielle.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Analyse factorielle</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-des-outils-jeu-de-donnees">Import des outils / jeu de données</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-globales">Variables globales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Visualisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relation-avec-la-variable-cible-response">Relation avec la variable cible (Response)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphiques-supplementaires">Graphiques supplémentaires</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#todo">todo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrice-de-correlation">Matrice de corrélation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">todo</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ab2nour, jExbrayat
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023, Ab2nour, jExbrayat.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

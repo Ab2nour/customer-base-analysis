@@ -1,0 +1,1742 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Clustering &#8212; Customer Base Analysis  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=19b21d1c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/07-clustering';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Régression (v1)" href="08-regressions.html" />
+    <link rel="prev" title="ANOVA" href="06-anova.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Customer Base Analysis  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">📊 Analyse préliminaire</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-analyse-exploratoire.html">Analyse exploratoire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-nettoyage.html">Nettoyage des données</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-feature-engineering.html">Feature Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-visualisation.html">Visualisation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📊 Analyse factorielle et ANOVA</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05-analyse-factorielle.html">Analyse factorielle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-anova.html">ANOVA</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📊 Segmentation des clients</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Clustering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📊 Modélisation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="08-regressions.html">Régression (v1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08a-refonte-regressions.html">Refonte régression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08b-bilan-regression.html">Bilan régression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-classification.html">Classification</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📊 Expérimentations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="10-experimentations.html">Expérimentations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">📖 Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../docstring/modules.html">Customer Base Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../docstring/src.html">src package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/07-clustering.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Clustering</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-des-outils-jeu-de-donnees">Import des outils / jeu de données</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-globales">Variables globales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Clustering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation-des-donnees">Préparation des données</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differents-algorithmes-de-clustering">Différents algorithmes de clustering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisation">Visualisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pour-aller-plus-loin">Pour aller plus loin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sauvegarde-des-donnees">Sauvegarde des données</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="clustering">
+<h1>Clustering<a class="headerlink" href="#clustering" title="Link to this heading">#</a></h1>
+<section id="import-des-outils-jeu-de-donnees">
+<h2>Import des outils / jeu de données<a class="headerlink" href="#import-des-outils-jeu-de-donnees" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos"> 4</span><span class="kn">import</span> <span class="nn">prince</span>
+<span class="linenos"> 5</span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="linenos"> 6</span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="linenos"> 7</span>    <span class="n">DBSCAN</span><span class="p">,</span>
+<span class="linenos"> 8</span>    <span class="n">OPTICS</span><span class="p">,</span>
+<span class="linenos"> 9</span>    <span class="n">AffinityPropagation</span><span class="p">,</span>
+<span class="linenos">10</span>    <span class="n">AgglomerativeClustering</span><span class="p">,</span>
+<span class="linenos">11</span>    <span class="n">KMeans</span><span class="p">,</span>
+<span class="linenos">12</span>    <span class="n">MeanShift</span><span class="p">,</span>
+<span class="linenos">13</span><span class="p">)</span>
+<span class="linenos">14</span><span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="linenos">15</span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="linenos">16</span>    <span class="n">calinski_harabasz_score</span><span class="p">,</span>
+<span class="linenos">17</span>    <span class="n">davies_bouldin_score</span><span class="p">,</span>
+<span class="linenos">18</span>    <span class="n">silhouette_score</span><span class="p">,</span>
+<span class="linenos">19</span><span class="p">)</span>
+<span class="linenos">20</span><span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GaussianMixture</span>
+<span class="linenos">21</span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">RobustScaler</span><span class="p">,</span> <span class="n">StandardScaler</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="kn">from</span> <span class="nn">src.clustering</span> <span class="kn">import</span> <span class="n">initiate_cluster_models</span>
+<span class="linenos">24</span><span class="kn">from</span> <span class="nn">src.config</span> <span class="kn">import</span> <span class="n">data_folder</span><span class="p">,</span> <span class="n">seed</span>
+<span class="linenos">25</span><span class="kn">from</span> <span class="nn">src.constants</span> <span class="kn">import</span> <span class="n">var_categoriques</span><span class="p">,</span> <span class="n">var_numeriques</span>
+<span class="linenos">26</span><span class="kn">from</span> <span class="nn">src.utils</span> <span class="kn">import</span> <span class="n">init_notebook</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">init_notebook</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+<span class="linenos">2</span>    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data_folder</span><span class="si">}</span><span class="s2">/data-cleaned-feature-engineering.csv&quot;</span><span class="p">,</span>
+<span class="linenos">3</span>    <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span>
+<span class="linenos">4</span>    <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span>
+<span class="linenos">5</span>    <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">composantes_acp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data_folder</span><span class="si">}</span><span class="s2">/composantes_acp.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;ID&quot;</span><span class="p">)</span>
+<span class="linenos">2</span><span class="n">composantes_acm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data_folder</span><span class="si">}</span><span class="s2">/composantes_acm.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;ID&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="variables-globales">
+<h2>Variables globales<a class="headerlink" href="#variables-globales" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">var_categoriques_extra</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;NbAcceptedCampaigns&quot;</span><span class="p">,</span> <span class="s2">&quot;HasAcceptedCampaigns&quot;</span><span class="p">,</span> <span class="s2">&quot;NbChildren&quot;</span><span class="p">]</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">var_categoriques_fe</span> <span class="o">=</span> <span class="n">var_categoriques</span> <span class="o">+</span> <span class="n">var_categoriques_extra</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h2>Clustering<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+</section>
+<section id="preparation-des-donnees">
+<h2>Préparation des données<a class="headerlink" href="#preparation-des-donnees" title="Link to this heading">#</a></h2>
+<p>Nous commencer par fusionner les variables quantitatives et les coordonnées des individus dans l’ACM.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">X_clust</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="n">var_numeriques</span><span class="p">],</span> <span class="n">composantes_acm</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">X_clust</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year_Birth</th>
+      <th>Income</th>
+      <th>Recency</th>
+      <th>MntWines</th>
+      <th>MntFruits</th>
+      <th>MntMeatProducts</th>
+      <th>MntFishProducts</th>
+      <th>MntSweetProducts</th>
+      <th>MntGoldProds</th>
+      <th>NumDealsPurchases</th>
+      <th>...</th>
+      <th>ACM4</th>
+      <th>ACM5</th>
+      <th>ACM6</th>
+      <th>ACM7</th>
+      <th>ACM8</th>
+      <th>ACM9</th>
+      <th>ACM10</th>
+      <th>ACM11</th>
+      <th>ACM12</th>
+      <th>ACM13</th>
+    </tr>
+    <tr>
+      <th>ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5524</th>
+      <td>1957</td>
+      <td>58138.0</td>
+      <td>58</td>
+      <td>635</td>
+      <td>88</td>
+      <td>546</td>
+      <td>172</td>
+      <td>88</td>
+      <td>88</td>
+      <td>3</td>
+      <td>...</td>
+      <td>-0.909429</td>
+      <td>0.439397</td>
+      <td>0.662880</td>
+      <td>-0.292805</td>
+      <td>-0.039068</td>
+      <td>0.196400</td>
+      <td>-0.843529</td>
+      <td>-0.898797</td>
+      <td>0.174169</td>
+      <td>0.960631</td>
+    </tr>
+    <tr>
+      <th>2174</th>
+      <td>1954</td>
+      <td>46344.0</td>
+      <td>38</td>
+      <td>11</td>
+      <td>1</td>
+      <td>6</td>
+      <td>2</td>
+      <td>1</td>
+      <td>6</td>
+      <td>2</td>
+      <td>...</td>
+      <td>-0.402198</td>
+      <td>0.129620</td>
+      <td>0.171945</td>
+      <td>-0.143049</td>
+      <td>-0.116974</td>
+      <td>0.105742</td>
+      <td>0.259841</td>
+      <td>0.262817</td>
+      <td>-0.093681</td>
+      <td>0.033373</td>
+    </tr>
+    <tr>
+      <th>4141</th>
+      <td>1965</td>
+      <td>71613.0</td>
+      <td>26</td>
+      <td>426</td>
+      <td>49</td>
+      <td>127</td>
+      <td>111</td>
+      <td>21</td>
+      <td>42</td>
+      <td>1</td>
+      <td>...</td>
+      <td>-0.423124</td>
+      <td>-0.465975</td>
+      <td>0.553202</td>
+      <td>0.541437</td>
+      <td>-1.880626</td>
+      <td>0.028891</td>
+      <td>-0.374510</td>
+      <td>-0.919603</td>
+      <td>0.287754</td>
+      <td>-0.350058</td>
+    </tr>
+    <tr>
+      <th>6182</th>
+      <td>1984</td>
+      <td>26646.0</td>
+      <td>26</td>
+      <td>11</td>
+      <td>4</td>
+      <td>20</td>
+      <td>10</td>
+      <td>3</td>
+      <td>5</td>
+      <td>2</td>
+      <td>...</td>
+      <td>-0.275507</td>
+      <td>-0.245603</td>
+      <td>0.246638</td>
+      <td>0.239619</td>
+      <td>-0.942750</td>
+      <td>-0.002593</td>
+      <td>-0.333331</td>
+      <td>0.052414</td>
+      <td>-0.412546</td>
+      <td>-0.177088</td>
+    </tr>
+    <tr>
+      <th>5324</th>
+      <td>1981</td>
+      <td>58293.0</td>
+      <td>94</td>
+      <td>173</td>
+      <td>43</td>
+      <td>118</td>
+      <td>46</td>
+      <td>27</td>
+      <td>15</td>
+      <td>5</td>
+      <td>...</td>
+      <td>0.554819</td>
+      <td>0.142063</td>
+      <td>-0.591854</td>
+      <td>-0.680550</td>
+      <td>0.175540</td>
+      <td>-0.518129</td>
+      <td>-0.348914</td>
+      <td>0.007669</td>
+      <td>-0.491990</td>
+      <td>-0.319610</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 27 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+<span class="linenos">2</span>    <span class="n">remainder</span><span class="o">=</span><span class="s2">&quot;passthrough&quot;</span><span class="p">,</span>
+<span class="linenos">3</span>    <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos">4</span>        <span class="p">(</span><span class="s2">&quot;scaler&quot;</span><span class="p">,</span> <span class="n">RobustScaler</span><span class="p">(),</span> <span class="n">var_numeriques</span><span class="p">),</span>
+<span class="linenos">5</span>    <span class="p">],</span>
+<span class="linenos">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">scaler</span> <span class="o">=</span> <span class="n">RobustScaler</span><span class="p">()</span>
+<span class="linenos">2</span><span class="n">df_apres_scale</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="linenos">3</span>    <span class="n">preprocessor</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_clust</span><span class="p">),</span>
+<span class="linenos">4</span>    <span class="n">columns</span><span class="o">=</span><span class="n">X_clust</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+<span class="linenos">5</span>    <span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+<span class="linenos">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">df_apres_scale</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year_Birth</th>
+      <th>Income</th>
+      <th>Recency</th>
+      <th>MntWines</th>
+      <th>MntFruits</th>
+      <th>MntMeatProducts</th>
+      <th>MntFishProducts</th>
+      <th>MntSweetProducts</th>
+      <th>MntGoldProds</th>
+      <th>NumDealsPurchases</th>
+      <th>...</th>
+      <th>ACM4</th>
+      <th>ACM5</th>
+      <th>ACM6</th>
+      <th>ACM7</th>
+      <th>ACM8</th>
+      <th>ACM9</th>
+      <th>ACM10</th>
+      <th>ACM11</th>
+      <th>ACM12</th>
+      <th>ACM13</th>
+    </tr>
+    <tr>
+      <th>ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5524</th>
+      <td>-0.722222</td>
+      <td>0.187662</td>
+      <td>0.18</td>
+      <td>0.957469</td>
+      <td>2.50000</td>
+      <td>2.238318</td>
+      <td>3.386243</td>
+      <td>2.424242</td>
+      <td>1.361702</td>
+      <td>0.5</td>
+      <td>...</td>
+      <td>-0.909429</td>
+      <td>0.439397</td>
+      <td>0.662880</td>
+      <td>-0.292805</td>
+      <td>-0.039068</td>
+      <td>0.196400</td>
+      <td>-0.843529</td>
+      <td>-0.898797</td>
+      <td>0.174169</td>
+      <td>0.960631</td>
+    </tr>
+    <tr>
+      <th>2174</th>
+      <td>-0.888889</td>
+      <td>-0.175314</td>
+      <td>-0.22</td>
+      <td>-0.337137</td>
+      <td>-0.21875</td>
+      <td>-0.285047</td>
+      <td>-0.211640</td>
+      <td>-0.212121</td>
+      <td>-0.382979</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>-0.402198</td>
+      <td>0.129620</td>
+      <td>0.171945</td>
+      <td>-0.143049</td>
+      <td>-0.116974</td>
+      <td>0.105742</td>
+      <td>0.259841</td>
+      <td>0.262817</td>
+      <td>-0.093681</td>
+      <td>0.033373</td>
+    </tr>
+    <tr>
+      <th>4141</th>
+      <td>-0.277778</td>
+      <td>0.602373</td>
+      <td>-0.46</td>
+      <td>0.523859</td>
+      <td>1.28125</td>
+      <td>0.280374</td>
+      <td>2.095238</td>
+      <td>0.393939</td>
+      <td>0.382979</td>
+      <td>-0.5</td>
+      <td>...</td>
+      <td>-0.423124</td>
+      <td>-0.465975</td>
+      <td>0.553202</td>
+      <td>0.541437</td>
+      <td>-1.880626</td>
+      <td>0.028891</td>
+      <td>-0.374510</td>
+      <td>-0.919603</td>
+      <td>0.287754</td>
+      <td>-0.350058</td>
+    </tr>
+    <tr>
+      <th>6182</th>
+      <td>0.777778</td>
+      <td>-0.781546</td>
+      <td>-0.46</td>
+      <td>-0.337137</td>
+      <td>-0.12500</td>
+      <td>-0.219626</td>
+      <td>-0.042328</td>
+      <td>-0.151515</td>
+      <td>-0.404255</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>-0.275507</td>
+      <td>-0.245603</td>
+      <td>0.246638</td>
+      <td>0.239619</td>
+      <td>-0.942750</td>
+      <td>-0.002593</td>
+      <td>-0.333331</td>
+      <td>0.052414</td>
+      <td>-0.412546</td>
+      <td>-0.177088</td>
+    </tr>
+    <tr>
+      <th>5324</th>
+      <td>0.611111</td>
+      <td>0.192433</td>
+      <td>0.90</td>
+      <td>-0.001037</td>
+      <td>1.09375</td>
+      <td>0.238318</td>
+      <td>0.719577</td>
+      <td>0.575758</td>
+      <td>-0.191489</td>
+      <td>1.5</td>
+      <td>...</td>
+      <td>0.554819</td>
+      <td>0.142063</td>
+      <td>-0.591854</td>
+      <td>-0.680550</td>
+      <td>0.175540</td>
+      <td>-0.518129</td>
+      <td>-0.348914</td>
+      <td>0.007669</td>
+      <td>-0.491990</td>
+      <td>-0.319610</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 27 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">df_avec_clusters</span> <span class="o">=</span> <span class="n">df_apres_scale</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="differents-algorithmes-de-clustering">
+<h2>Différents algorithmes de clustering<a class="headerlink" href="#differents-algorithmes-de-clustering" title="Link to this heading">#</a></h2>
+<p>Nous choisissons de tester 2 types de modèles de clustering :</p>
+<ol class="arabic simple">
+<li><p>les modèles à choix du nombre de clusters</p></li>
+<li><p>les modèles qui décident du nombre de clusters</p></li>
+</ol>
+<p>Cela nous permettra de comparer le nombre de clusters donné par les seconds algorithmes.</p>
+<p>Pour les modèles pour lesquels il faut choisir le nombre de clusters, nous décidons de tester des clusters de taille 2 à 5 (inclus), car un trop grand nombre de clusters serait plus difficile à interpréter pour l’équipe marketing dans un premier temps.</p>
+<p><strong>Tableau.</strong> Méthodologie de clustering</p>
+<p>|:—————————-|:—-|
+| Algorithmes | Avec choix du nombre de clusters (entre 2 et 5)<br>Sans choix du nombre de clusters |
+| Critères de sélection | Répartition des clusters<br>Métriques de clusters<br>Sélection manuelle des clusters via leur affichage |
+| Métriques | Score Silhouette (entre -1 et 1, proche de 1 = meilleurs clusters)<br>Calinski-Harabasz (entre 0 et $+\infty$ plus grand = meilleure séparation)<br>Davies-Bouldin (entre 0 et $+\infty$, proche de 0 = meilleurs clusters) |
+| Affichage des clusters | Sur les axes d’ACP 1-4<br>Sur les axes d’ACM 1-4<br>En fonction des variables quantitatives<br>En fonction des variables qualitatives |</p>
+<p><strong>Tableau.</strong> Algorithmes de clustering testés</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Choix du nombre de clusters</p></th>
+<th class="head text-left"><p>Algorithmes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Avec</p></td>
+<td class="text-left"><p>KMeans<br/>Mélange Gaussien (GMM)<br/>Classification Ascendante Hiérarchique (CAH)<br/>(méthode de Ward, single/complete/average linkage)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Sans</p></td>
+<td class="text-left"><p>OPTICS<br/>Mean Shift<br/>Propagation d’affinité (Affinity Propagation)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">NB_CLUSTER_MIN</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="linenos">2</span><span class="n">NB_CLUSTER_MAX</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1">## non inclus</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">model_clusters</span> <span class="o">=</span> <span class="n">initiate_cluster_models</span><span class="p">(</span>
+<span class="linenos">2</span>    <span class="n">NB_CLUSTER_MIN</span><span class="p">,</span>
+<span class="linenos">3</span>    <span class="n">NB_CLUSTER_MAX</span><span class="p">,</span>
+<span class="linenos">4</span>    <span class="n">seed</span><span class="p">,</span>
+<span class="linenos">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">a</span> <span class="o">=</span> <span class="n">GaussianMixture</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">GaussianMixture</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">cluster_metrics</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">for</span> <span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span> <span class="ow">in</span> <span class="n">model_clusters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="linenos"> 4</span>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">GaussianMixture</span><span class="p">):</span>  <span class="c1">## cas particulier du mélange gaussien</span>
+<span class="linenos"> 5</span>        <span class="n">df_avec_clusters</span><span class="p">[</span><span class="n">model_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">df_apres_scale</span><span class="p">)</span>
+<span class="linenos"> 6</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos"> 7</span>        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_apres_scale</span><span class="p">)</span>
+<span class="linenos"> 8</span>        <span class="n">df_avec_clusters</span><span class="p">[</span><span class="n">model_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">labels_</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>    <span class="n">df_avec_clusters</span><span class="p">[</span><span class="n">model_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span>
+<span class="linenos">11</span>        <span class="n">df_avec_clusters</span><span class="p">[</span><span class="n">model_name</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="linenos">12</span>    <span class="p">)</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>    <span class="n">nb_clusters</span> <span class="o">=</span> <span class="n">df_avec_clusters</span><span class="p">[</span><span class="n">model_name</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span>    <span class="n">repartition</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+<span class="linenos">17</span>        <span class="n">df_avec_clusters</span><span class="p">[</span><span class="n">model_name</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="linenos">18</span>    <span class="p">)</span>  <span class="c1">## todo: enlever astype(str) si ça sert à rien (tester)</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span>    <span class="n">cluster_metrics</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<span class="linenos">21</span>        <span class="p">[</span>
+<span class="linenos">22</span>            <span class="n">model_name</span><span class="p">,</span>
+<span class="linenos">23</span>            <span class="n">nb_clusters</span><span class="p">,</span>
+<span class="linenos">24</span>            <span class="s2">&quot; | &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">repartition</span><span class="p">),</span>
+<span class="linenos">25</span>            <span class="n">silhouette_score</span><span class="p">(</span>
+<span class="linenos">26</span>                <span class="n">df_apres_scale</span><span class="p">,</span> <span class="n">df_avec_clusters</span><span class="p">[</span><span class="n">model_name</span><span class="p">],</span> <span class="n">random_state</span><span class="o">=</span><span class="n">seed</span>
+<span class="linenos">27</span>            <span class="p">),</span>  <span class="c1">## proche de 1 = mieux</span>
+<span class="linenos">28</span>            <span class="n">calinski_harabasz_score</span><span class="p">(</span>
+<span class="linenos">29</span>                <span class="n">df_apres_scale</span><span class="p">,</span>
+<span class="linenos">30</span>                <span class="n">df_avec_clusters</span><span class="p">[</span><span class="n">model_name</span><span class="p">],</span>
+<span class="linenos">31</span>            <span class="p">),</span>  <span class="c1">## plus élevé, mieux c&#39;est</span>
+<span class="linenos">32</span>            <span class="n">davies_bouldin_score</span><span class="p">(</span>
+<span class="linenos">33</span>                <span class="n">df_apres_scale</span><span class="p">,</span> <span class="n">df_avec_clusters</span><span class="p">[</span><span class="n">model_name</span><span class="p">]</span>
+<span class="linenos">34</span>            <span class="p">),</span>  <span class="c1">## proche de 0 = mieux</span>
+<span class="linenos">35</span>        <span class="p">]</span>
+<span class="linenos">36</span>    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.cache/pypoetry/virtualenvs/customer-base-analysis-F-W2gxNr-py3.10/lib/python3.10/site-packages/sklearn/cluster/_kmeans.py:1416: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  super()._check_params_vs_input(X, default_n_init=10)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.cache/pypoetry/virtualenvs/customer-base-analysis-F-W2gxNr-py3.10/lib/python3.10/site-packages/sklearn/cluster/_kmeans.py:1416: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  super()._check_params_vs_input(X, default_n_init=10)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.cache/pypoetry/virtualenvs/customer-base-analysis-F-W2gxNr-py3.10/lib/python3.10/site-packages/sklearn/cluster/_kmeans.py:1416: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  super()._check_params_vs_input(X, default_n_init=10)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.cache/pypoetry/virtualenvs/customer-base-analysis-F-W2gxNr-py3.10/lib/python3.10/site-packages/sklearn/cluster/_kmeans.py:1416: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  super()._check_params_vs_input(X, default_n_init=10)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.cache/pypoetry/virtualenvs/customer-base-analysis-F-W2gxNr-py3.10/lib/python3.10/site-packages/sklearn/cluster/_affinity_propagation.py:142: ConvergenceWarning: Affinity propagation did not converge, this model may return degenerate cluster centers and labels.
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="linenos"> 2</span>    <span class="n">cluster_metrics</span><span class="p">,</span>
+<span class="linenos"> 3</span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos"> 4</span>        <span class="s2">&quot;Algorithme de clustering&quot;</span><span class="p">,</span>
+<span class="linenos"> 5</span>        <span class="s2">&quot;Nombre de clusters&quot;</span><span class="p">,</span>
+<span class="linenos"> 6</span>        <span class="s2">&quot;Répartition&quot;</span><span class="p">,</span>
+<span class="linenos"> 7</span>        <span class="s2">&quot;Silhouette&quot;</span><span class="p">,</span>
+<span class="linenos"> 8</span>        <span class="s2">&quot;Calinski-Harabasz&quot;</span><span class="p">,</span>
+<span class="linenos"> 9</span>        <span class="s2">&quot;Davies-Bouldin&quot;</span><span class="p">,</span>
+<span class="linenos">10</span>    <span class="p">],</span>
+<span class="linenos">11</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Algorithme de clustering</th>
+      <th>Nombre de clusters</th>
+      <th>Répartition</th>
+      <th>Silhouette</th>
+      <th>Calinski-Harabasz</th>
+      <th>Davies-Bouldin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>KMeans2</td>
+      <td>2</td>
+      <td>0.68 | 0.32</td>
+      <td>0.318482</td>
+      <td>754.878090</td>
+      <td>1.547400</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>KMeans3</td>
+      <td>3</td>
+      <td>0.46 | 0.29 | 0.25</td>
+      <td>0.167516</td>
+      <td>513.955410</td>
+      <td>1.982583</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>KMeans4</td>
+      <td>4</td>
+      <td>0.45 | 0.25 | 0.19 | 0.12</td>
+      <td>0.157546</td>
+      <td>402.274688</td>
+      <td>2.334645</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>KMeans5</td>
+      <td>5</td>
+      <td>0.44 | 0.23 | 0.19 | 0.12 | 0.02</td>
+      <td>0.170982</td>
+      <td>340.753601</td>
+      <td>2.058930</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>GMM2</td>
+      <td>2</td>
+      <td>0.52 | 0.48</td>
+      <td>0.207188</td>
+      <td>542.083968</td>
+      <td>1.740252</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>GMM3</td>
+      <td>3</td>
+      <td>0.52 | 0.31 | 0.18</td>
+      <td>0.062900</td>
+      <td>218.097499</td>
+      <td>3.099757</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>GMM4</td>
+      <td>4</td>
+      <td>0.36 | 0.3 | 0.27 | 0.06</td>
+      <td>0.087929</td>
+      <td>268.462211</td>
+      <td>4.010402</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>GMM5</td>
+      <td>5</td>
+      <td>0.43 | 0.34 | 0.13 | 0.07 | 0.02</td>
+      <td>0.129101</td>
+      <td>205.782852</td>
+      <td>3.352396</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>CAH (Ward) 2</td>
+      <td>2</td>
+      <td>0.72 | 0.28</td>
+      <td>0.314124</td>
+      <td>657.064212</td>
+      <td>1.618113</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>CAH (Ward) 3</td>
+      <td>3</td>
+      <td>0.44 | 0.28 | 0.28</td>
+      <td>0.138385</td>
+      <td>456.284028</td>
+      <td>2.071393</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>CAH (Ward) 4</td>
+      <td>4</td>
+      <td>0.41 | 0.28 | 0.28 | 0.02</td>
+      <td>0.147383</td>
+      <td>348.454297</td>
+      <td>1.794500</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>CAH (Ward) 5</td>
+      <td>5</td>
+      <td>0.41 | 0.28 | 0.22 | 0.06 | 0.02</td>
+      <td>0.142491</td>
+      <td>292.850286</td>
+      <td>2.186182</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>CAH (average linkage) 2</td>
+      <td>2</td>
+      <td>1.0 | 0.0</td>
+      <td>0.552208</td>
+      <td>29.958308</td>
+      <td>0.928812</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>CAH (average linkage) 3</td>
+      <td>3</td>
+      <td>1.0 | 0.0 | 0.0</td>
+      <td>0.523717</td>
+      <td>18.536309</td>
+      <td>0.735997</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>CAH (average linkage) 4</td>
+      <td>4</td>
+      <td>1.0 | 0.0 | 0.0 | 0.0</td>
+      <td>0.478857</td>
+      <td>14.305294</td>
+      <td>0.755391</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>CAH (average linkage) 5</td>
+      <td>5</td>
+      <td>1.0 | 0.0 | 0.0 | 0.0 | 0.0</td>
+      <td>0.458367</td>
+      <td>14.762254</td>
+      <td>0.896412</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>CAH (single linkage) 2</td>
+      <td>2</td>
+      <td>1.0 | 0.0</td>
+      <td>0.587091</td>
+      <td>26.332043</td>
+      <td>0.549969</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>CAH (single linkage) 3</td>
+      <td>3</td>
+      <td>1.0 | 0.0 | 0.0</td>
+      <td>0.568624</td>
+      <td>17.823639</td>
+      <td>0.468717</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>CAH (single linkage) 4</td>
+      <td>4</td>
+      <td>1.0 | 0.0 | 0.0 | 0.0</td>
+      <td>0.540606</td>
+      <td>14.538207</td>
+      <td>0.434358</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>CAH (single linkage) 5</td>
+      <td>5</td>
+      <td>1.0 | 0.0 | 0.0 | 0.0 | 0.0</td>
+      <td>0.518696</td>
+      <td>12.704006</td>
+      <td>0.417355</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>CAH (complete linkage) 2</td>
+      <td>2</td>
+      <td>1.0 | 0.0</td>
+      <td>0.552208</td>
+      <td>29.958308</td>
+      <td>0.928812</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>CAH (complete linkage) 3</td>
+      <td>3</td>
+      <td>1.0 | 0.0 | 0.0</td>
+      <td>0.540075</td>
+      <td>21.966639</td>
+      <td>0.879092</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>CAH (complete linkage) 4</td>
+      <td>4</td>
+      <td>0.72 | 0.27 | 0.0 | 0.0</td>
+      <td>0.317609</td>
+      <td>248.338621</td>
+      <td>1.259276</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>CAH (complete linkage) 5</td>
+      <td>5</td>
+      <td>0.71 | 0.27 | 0.01 | 0.0 | 0.0</td>
+      <td>0.290965</td>
+      <td>202.334927</td>
+      <td>1.242878</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>OPTICS</td>
+      <td>28</td>
+      <td>0.89 | 0.01 | 0.01 | 0.01 | 0.01 | 0.01 | 0.01...</td>
+      <td>-0.295888</td>
+      <td>7.766509</td>
+      <td>1.447745</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>MeanShift</td>
+      <td>22</td>
+      <td>0.84 | 0.04 | 0.02 | 0.02 | 0.02 | 0.02 | 0.01...</td>
+      <td>0.197199</td>
+      <td>42.398326</td>
+      <td>1.371609</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>AffinityPropagation</td>
+      <td>142</td>
+      <td>0.04 | 0.03 | 0.03 | 0.02 | 0.02 | 0.02 | 0.02...</td>
+      <td>0.098856</td>
+      <td>40.876485</td>
+      <td>1.657521</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Clusters sélectionnés :</p>
+<ul class="simple">
+<li><p>KMeans 2</p></li>
+<li><p>GMM 2</p></li>
+<li><p>CAH (Ward 2)</p></li>
+</ul>
+<p>Nous avons aussi étudié certains clusters avec 3 groupes, qui nous ont permis d’identifier certains individus, mais qui ne sont pas aussi intéressants et utilisables que les clusters avec 2 groupes.</p>
+</section>
+<section id="visualisation">
+<h2>Visualisation<a class="headerlink" href="#visualisation" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">def</span> <span class="nf">affiche_taille_clusters</span><span class="p">(</span><span class="n">nom_cluster</span><span class="p">):</span>
+<span class="linenos">2</span>    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Taille des clusters&quot;</span><span class="p">)</span>
+<span class="linenos">3</span>    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">df_avec_clusters</span><span class="p">[</span><span class="n">nom_cluster</span><span class="p">],</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="linenos">4</span>
+<span class="linenos">5</span>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">affiche_clusters_acp</span><span class="p">(</span><span class="n">nom_cluster</span><span class="p">):</span>
+<span class="linenos"> 2</span>    <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span>    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Clusters sur les axes d&#39;ACP 1-2&quot;</span><span class="p">)</span>
+<span class="linenos"> 5</span>    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Clusters sur les axes d&#39;ACP 3-4&quot;</span><span class="p">)</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+<span class="linenos"> 8</span>        <span class="n">composantes_acp</span><span class="p">,</span>
+<span class="linenos"> 9</span>        <span class="n">x</span><span class="o">=</span><span class="s2">&quot;ACP1&quot;</span><span class="p">,</span>
+<span class="linenos">10</span>        <span class="n">y</span><span class="o">=</span><span class="s2">&quot;ACP2&quot;</span><span class="p">,</span>
+<span class="linenos">11</span>        <span class="n">hue</span><span class="o">=</span><span class="n">df_avec_clusters</span><span class="p">[</span><span class="n">nom_cluster</span><span class="p">],</span>
+<span class="linenos">12</span>        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+<span class="linenos">13</span>        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="linenos">14</span>    <span class="p">)</span>
+<span class="linenos">15</span>    <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+<span class="linenos">16</span>        <span class="n">composantes_acp</span><span class="p">,</span>
+<span class="linenos">17</span>        <span class="n">x</span><span class="o">=</span><span class="s2">&quot;ACP3&quot;</span><span class="p">,</span>
+<span class="linenos">18</span>        <span class="n">y</span><span class="o">=</span><span class="s2">&quot;ACP4&quot;</span><span class="p">,</span>
+<span class="linenos">19</span>        <span class="n">hue</span><span class="o">=</span><span class="n">df_avec_clusters</span><span class="p">[</span><span class="n">nom_cluster</span><span class="p">],</span>
+<span class="linenos">20</span>        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+<span class="linenos">21</span>        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="linenos">22</span>    <span class="p">)</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">affiche_clusters_acm</span><span class="p">(</span><span class="n">nom_cluster</span><span class="p">):</span>
+<span class="linenos"> 2</span>    <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span>    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Clusters sur les axes d&#39;ACM 1-2&quot;</span><span class="p">)</span>
+<span class="linenos"> 5</span>    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Clusters sur les axes d&#39;ACM 3-4&quot;</span><span class="p">)</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+<span class="linenos"> 8</span>        <span class="n">composantes_acm</span><span class="p">,</span>
+<span class="linenos"> 9</span>        <span class="n">x</span><span class="o">=</span><span class="s2">&quot;ACM1&quot;</span><span class="p">,</span>
+<span class="linenos">10</span>        <span class="n">y</span><span class="o">=</span><span class="s2">&quot;ACM2&quot;</span><span class="p">,</span>
+<span class="linenos">11</span>        <span class="n">hue</span><span class="o">=</span><span class="n">df_avec_clusters</span><span class="p">[</span><span class="n">nom_cluster</span><span class="p">],</span>
+<span class="linenos">12</span>        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+<span class="linenos">13</span>        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="linenos">14</span>    <span class="p">)</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span>    <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+<span class="linenos">17</span>        <span class="n">composantes_acm</span><span class="p">,</span>
+<span class="linenos">18</span>        <span class="n">x</span><span class="o">=</span><span class="s2">&quot;ACM3&quot;</span><span class="p">,</span>
+<span class="linenos">19</span>        <span class="n">y</span><span class="o">=</span><span class="s2">&quot;ACM4&quot;</span><span class="p">,</span>
+<span class="linenos">20</span>        <span class="n">hue</span><span class="o">=</span><span class="n">df_avec_clusters</span><span class="p">[</span><span class="n">nom_cluster</span><span class="p">],</span>
+<span class="linenos">21</span>        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+<span class="linenos">22</span>        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="linenos">23</span>    <span class="p">)</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">affiche_clusters_var_quanti</span><span class="p">(</span><span class="n">nom_cluster</span><span class="p">):</span>
+<span class="linenos"> 2</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Affiche les variables quantitatives en fonction des clusters.&quot;&quot;&quot;</span>
+<span class="linenos"> 3</span>    <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">var_numeriques</span><span class="p">:</span>
+<span class="linenos"> 4</span>        <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>        <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+<span class="linenos"> 7</span>            <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">var</span><span class="p">],</span>
+<span class="linenos"> 8</span>            <span class="n">y</span><span class="o">=</span><span class="n">df_avec_clusters</span><span class="p">[</span><span class="n">nom_cluster</span><span class="p">],</span>
+<span class="linenos"> 9</span>            <span class="n">width</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+<span class="linenos">10</span>            <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="linenos">11</span>        <span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>        <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span>
+<span class="linenos">14</span>            <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">var</span><span class="p">],</span>
+<span class="linenos">15</span>            <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">16</span>            <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="linenos">17</span>            <span class="n">hue</span><span class="o">=</span><span class="n">df_avec_clusters</span><span class="p">[</span><span class="n">nom_cluster</span><span class="p">],</span>
+<span class="linenos">18</span>            <span class="n">stat</span><span class="o">=</span><span class="s2">&quot;probability&quot;</span><span class="p">,</span>
+<span class="linenos">19</span>            <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="linenos">20</span>        <span class="p">)</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span>        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">affiche_clusters_var_quali</span><span class="p">(</span><span class="n">nom_cluster</span><span class="p">):</span>
+<span class="linenos"> 2</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Affiche les variables qualitatives en fonction des clusters et vice-versa.&quot;&quot;&quot;</span>
+<span class="linenos"> 3</span>    <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">var_categoriques_fe</span><span class="p">:</span>
+<span class="linenos"> 4</span>        <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>        <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span>
+<span class="linenos"> 7</span>            <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">),</span>
+<span class="linenos"> 8</span>            <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="linenos"> 9</span>            <span class="n">hue</span><span class="o">=</span><span class="n">df_avec_clusters</span><span class="p">[</span><span class="n">nom_cluster</span><span class="p">],</span>
+<span class="linenos">10</span>            <span class="n">multiple</span><span class="o">=</span><span class="s2">&quot;dodge&quot;</span><span class="p">,</span>
+<span class="linenos">11</span>            <span class="n">shrink</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="linenos">12</span>            <span class="n">common_norm</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">13</span>        <span class="p">)</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>        <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span>
+<span class="linenos">16</span>            <span class="n">hue</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">),</span>
+<span class="linenos">17</span>            <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="linenos">18</span>            <span class="n">x</span><span class="o">=</span><span class="n">df_avec_clusters</span><span class="p">[</span><span class="n">nom_cluster</span><span class="p">],</span>
+<span class="linenos">19</span>            <span class="n">multiple</span><span class="o">=</span><span class="s2">&quot;dodge&quot;</span><span class="p">,</span>
+<span class="linenos">20</span>            <span class="n">shrink</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="linenos">21</span>            <span class="n">common_norm</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">22</span>        <span class="p">)</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span>        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">def</span> <span class="nf">affiche_clusters</span><span class="p">(</span><span class="n">nom_cluster</span><span class="p">):</span>
+<span class="linenos">2</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Affiche les variables en fonction des clusters.&quot;&quot;&quot;</span>
+<span class="linenos">3</span>    <span class="n">affiche_taille_clusters</span><span class="p">(</span><span class="n">nom_cluster</span><span class="p">)</span>
+<span class="linenos">4</span>    <span class="n">affiche_clusters_acp</span><span class="p">(</span><span class="n">nom_cluster</span><span class="p">)</span>
+<span class="linenos">5</span>    <span class="n">affiche_clusters_acm</span><span class="p">(</span><span class="n">nom_cluster</span><span class="p">)</span>
+<span class="linenos">6</span>
+<span class="linenos">7</span>    <span class="n">affiche_clusters_var_quanti</span><span class="p">(</span><span class="n">nom_cluster</span><span class="p">)</span>
+<span class="linenos">8</span>    <span class="n">affiche_clusters_var_quali</span><span class="p">(</span><span class="n">nom_cluster</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">affiche_clusters</span><span class="p">(</span><span class="s2">&quot;KMeans2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1d1b29e76420c746644bd3f94ac93e4ee2a6ec30d9bd07e883b443634512ff80.png" src="../_images/1d1b29e76420c746644bd3f94ac93e4ee2a6ec30d9bd07e883b443634512ff80.png" />
+<img alt="../_images/861b451db5ab8f004093097050b7e228957714086d2c503a8fd99965a567406e.png" src="../_images/861b451db5ab8f004093097050b7e228957714086d2c503a8fd99965a567406e.png" />
+<img alt="../_images/bb3a907b696916eb09c855c6f0f281bdfea584d3020f0ae96edac1227eec6552.png" src="../_images/bb3a907b696916eb09c855c6f0f281bdfea584d3020f0ae96edac1227eec6552.png" />
+<img alt="../_images/b2f93041e075f81d57e55ea073d80ff5a2ecff1567bc3bc4bbbdd74335d0d544.png" src="../_images/b2f93041e075f81d57e55ea073d80ff5a2ecff1567bc3bc4bbbdd74335d0d544.png" />
+<img alt="../_images/6612d5f2e37d53188f6afd1c0c4e73c0ddb6b4f5709d59e88ee009a26a8e315f.png" src="../_images/6612d5f2e37d53188f6afd1c0c4e73c0ddb6b4f5709d59e88ee009a26a8e315f.png" />
+<img alt="../_images/bff55f28e9a296440523eadda420a08eed78032c99111d7a16eba1baf6cf4572.png" src="../_images/bff55f28e9a296440523eadda420a08eed78032c99111d7a16eba1baf6cf4572.png" />
+<img alt="../_images/8a0521ad78d6cc564088bcb12c8f9c0b583ac6f79c8c5ef7711abe1cd5b22e14.png" src="../_images/8a0521ad78d6cc564088bcb12c8f9c0b583ac6f79c8c5ef7711abe1cd5b22e14.png" />
+<img alt="../_images/0708c1df1997ed677d49389710666405a455880a9e52146affb5065aba909d3e.png" src="../_images/0708c1df1997ed677d49389710666405a455880a9e52146affb5065aba909d3e.png" />
+<img alt="../_images/8c00bf5dbe5871e5ce616d5974346218de3d37703e92a083bb279450b425a7a4.png" src="../_images/8c00bf5dbe5871e5ce616d5974346218de3d37703e92a083bb279450b425a7a4.png" />
+<img alt="../_images/1591b49d0e7df2a8c1e3d86f016577645c40b110a30900a95f0fc042cbdbf185.png" src="../_images/1591b49d0e7df2a8c1e3d86f016577645c40b110a30900a95f0fc042cbdbf185.png" />
+<img alt="../_images/86c8bac4e26389c324a304e5d50165ccbc65ef28191c51858e721d0db64989c7.png" src="../_images/86c8bac4e26389c324a304e5d50165ccbc65ef28191c51858e721d0db64989c7.png" />
+<img alt="../_images/0874eb40e59e59e4eb644c60c4d20f495531f26040d61c521de3dd4840abf26c.png" src="../_images/0874eb40e59e59e4eb644c60c4d20f495531f26040d61c521de3dd4840abf26c.png" />
+<img alt="../_images/d0e09f7d55900c2dbcbef0d9e2f1c1dffe0f091f3e8124de34ccef806c13351d.png" src="../_images/d0e09f7d55900c2dbcbef0d9e2f1c1dffe0f091f3e8124de34ccef806c13351d.png" />
+<img alt="../_images/8d1919cb7052c7033787843ee4a0f1c8d081c3bf6354441dfc57cc7611dc6190.png" src="../_images/8d1919cb7052c7033787843ee4a0f1c8d081c3bf6354441dfc57cc7611dc6190.png" />
+<img alt="../_images/fdb40d783666aa22bd9bcf53ca042812dafca51ecc942844e28cedb0b6dc737a.png" src="../_images/fdb40d783666aa22bd9bcf53ca042812dafca51ecc942844e28cedb0b6dc737a.png" />
+<img alt="../_images/7f5eb3d0cd7115de8bbfcb0ffd074038f2ef2edc2cf0bc48ee274acf754325f6.png" src="../_images/7f5eb3d0cd7115de8bbfcb0ffd074038f2ef2edc2cf0bc48ee274acf754325f6.png" />
+<img alt="../_images/a63da177a877394ff3fec3243afb3840b357138d3a4886b62207c4bf56204852.png" src="../_images/a63da177a877394ff3fec3243afb3840b357138d3a4886b62207c4bf56204852.png" />
+<img alt="../_images/f30bc2df50145a57da69e3f3bf62f54c4c57ca1c4a1970202e0c870f019ff5cb.png" src="../_images/f30bc2df50145a57da69e3f3bf62f54c4c57ca1c4a1970202e0c870f019ff5cb.png" />
+<img alt="../_images/2ff94fee55cfa31829f1c3ae67ffaacfc3f4a7508242ad1d73ce1d996101a544.png" src="../_images/2ff94fee55cfa31829f1c3ae67ffaacfc3f4a7508242ad1d73ce1d996101a544.png" />
+<img alt="../_images/4dd7bc48f60202b0203da8bd3bba5b03e953f4cad6c3b2e9c2feb13d90049bc1.png" src="../_images/4dd7bc48f60202b0203da8bd3bba5b03e953f4cad6c3b2e9c2feb13d90049bc1.png" />
+<img alt="../_images/0b5458027a889ee59e82bdeea695dbf21bfcec290b2006f372d2ca8e3b7c1831.png" src="../_images/0b5458027a889ee59e82bdeea695dbf21bfcec290b2006f372d2ca8e3b7c1831.png" />
+<img alt="../_images/a6e934e0adf659cf03253021590b75c965c2594f19513663442e77ca49bea94a.png" src="../_images/a6e934e0adf659cf03253021590b75c965c2594f19513663442e77ca49bea94a.png" />
+<img alt="../_images/15bcf075b404a818422db502c353171ac4439c76d3201a4c1e9158b7d5689cb9.png" src="../_images/15bcf075b404a818422db502c353171ac4439c76d3201a4c1e9158b7d5689cb9.png" />
+<img alt="../_images/c0358e24197661595769bc92e8d027f9bc1c7e9bd0ed5fd9bd5185116d0d41ca.png" src="../_images/c0358e24197661595769bc92e8d027f9bc1c7e9bd0ed5fd9bd5185116d0d41ca.png" />
+<img alt="../_images/9cc74390b94e14e2e8e49c8221c5c0467601946ff0c5ac0d432ea35ce8c35abe.png" src="../_images/9cc74390b94e14e2e8e49c8221c5c0467601946ff0c5ac0d432ea35ce8c35abe.png" />
+<img alt="../_images/e7936097b17d684653312691a04e00f6ba8a024561bf1702580f22213d4b3cfd.png" src="../_images/e7936097b17d684653312691a04e00f6ba8a024561bf1702580f22213d4b3cfd.png" />
+<img alt="../_images/43364c2d7f6a4e82914c88aae67a8b8aeb58098fc630f5b5172b73a33febdddf.png" src="../_images/43364c2d7f6a4e82914c88aae67a8b8aeb58098fc630f5b5172b73a33febdddf.png" />
+<img alt="../_images/a74c87ccb7c6857d349b55340615d3f4845a1f8846b43b5eeaa059211655d8e8.png" src="../_images/a74c87ccb7c6857d349b55340615d3f4845a1f8846b43b5eeaa059211655d8e8.png" />
+<img alt="../_images/44a15b8a156d9a8e3ae29f298a3eed35c715829bfa99b86b0e01e0781c6b1163.png" src="../_images/44a15b8a156d9a8e3ae29f298a3eed35c715829bfa99b86b0e01e0781c6b1163.png" />
+<img alt="../_images/75b7b7838e02f8b862d8f7e38ea5860eb3b364fda6049157df62e65d231cec30.png" src="../_images/75b7b7838e02f8b862d8f7e38ea5860eb3b364fda6049157df62e65d231cec30.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">affiche_clusters</span><span class="p">(</span><span class="s2">&quot;GMM2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/cb351fbe4ba0e8c969aee4c5e4dbbde9cd35ce8a05bb5d8b9de33cf0c7b654ba.png" src="../_images/cb351fbe4ba0e8c969aee4c5e4dbbde9cd35ce8a05bb5d8b9de33cf0c7b654ba.png" />
+<img alt="../_images/5a56e31aeb1c6ff34edfff0bc865633a54995ddb97daf1c55efc84d37b930442.png" src="../_images/5a56e31aeb1c6ff34edfff0bc865633a54995ddb97daf1c55efc84d37b930442.png" />
+<img alt="../_images/268634882191e9e5658757d1b673cdebb994beccd29b7510b2dd37f37596a47c.png" src="../_images/268634882191e9e5658757d1b673cdebb994beccd29b7510b2dd37f37596a47c.png" />
+<img alt="../_images/f4f5c69046bf700aa3be7b78571b0c78b2c4a55384f01ff5ca28430874a5bb77.png" src="../_images/f4f5c69046bf700aa3be7b78571b0c78b2c4a55384f01ff5ca28430874a5bb77.png" />
+<img alt="../_images/fd1f05aa20b0b39a6d13cd9f6f74aca894719e977e82ea85953764adef1235e8.png" src="../_images/fd1f05aa20b0b39a6d13cd9f6f74aca894719e977e82ea85953764adef1235e8.png" />
+<img alt="../_images/5cc27530f9315e6f8465da7fb5f4cbd5e5ddf33179142c76d9abc5b70cf04a95.png" src="../_images/5cc27530f9315e6f8465da7fb5f4cbd5e5ddf33179142c76d9abc5b70cf04a95.png" />
+<img alt="../_images/f0201f1db42916e41a94c5a64a6af1500bc65dc907a6d099d0dad8592ab61686.png" src="../_images/f0201f1db42916e41a94c5a64a6af1500bc65dc907a6d099d0dad8592ab61686.png" />
+<img alt="../_images/31947b03a7e86d0c64802380ad339220e41d6a33c095a709e2b0e627fc93276e.png" src="../_images/31947b03a7e86d0c64802380ad339220e41d6a33c095a709e2b0e627fc93276e.png" />
+<img alt="../_images/dfbb2e62cf66b65b6030565dc34846882051b939d87bff04437d8eab4e30d0c6.png" src="../_images/dfbb2e62cf66b65b6030565dc34846882051b939d87bff04437d8eab4e30d0c6.png" />
+<img alt="../_images/b0c611a8ed15e9d4b9e56ba6f919b55a103649fe1fccc471fb7f4f3e2fef935e.png" src="../_images/b0c611a8ed15e9d4b9e56ba6f919b55a103649fe1fccc471fb7f4f3e2fef935e.png" />
+<img alt="../_images/2de0f42afaaba61630a787b4ab8d90442a1dc586823e7472946de5758fb4d7fe.png" src="../_images/2de0f42afaaba61630a787b4ab8d90442a1dc586823e7472946de5758fb4d7fe.png" />
+<img alt="../_images/0688755ca89da592b95d03f1d1daaf9e98bf9574dcb955462534edb7702c5151.png" src="../_images/0688755ca89da592b95d03f1d1daaf9e98bf9574dcb955462534edb7702c5151.png" />
+<img alt="../_images/30cc552044752139e1a200a1a9462ac5f8b30278cf7b054e410ab2dfbc2bbde2.png" src="../_images/30cc552044752139e1a200a1a9462ac5f8b30278cf7b054e410ab2dfbc2bbde2.png" />
+<img alt="../_images/2e385ca978aa2698ed3c242ce6a6e6819e7d9eb5c4d7c215f31a52e18410e037.png" src="../_images/2e385ca978aa2698ed3c242ce6a6e6819e7d9eb5c4d7c215f31a52e18410e037.png" />
+<img alt="../_images/72b68636c61507e990cd6efff8ab2add1175085fb3873050628327d62ff8c8ef.png" src="../_images/72b68636c61507e990cd6efff8ab2add1175085fb3873050628327d62ff8c8ef.png" />
+<img alt="../_images/60c4e2d69b06eace9d0f7e7decd068bf6fe2e5e12deeb29b4ac99354ae0eca4d.png" src="../_images/60c4e2d69b06eace9d0f7e7decd068bf6fe2e5e12deeb29b4ac99354ae0eca4d.png" />
+<img alt="../_images/f3ef698da80501a2fa0d6cabd5a218706459e0ef1ffd8b722bf72018ef319abf.png" src="../_images/f3ef698da80501a2fa0d6cabd5a218706459e0ef1ffd8b722bf72018ef319abf.png" />
+<img alt="../_images/9b0663b11b3abdf2e5e49fd1ea3c8c9b97e3293edeca68c66b89e13bb7da4da6.png" src="../_images/9b0663b11b3abdf2e5e49fd1ea3c8c9b97e3293edeca68c66b89e13bb7da4da6.png" />
+<img alt="../_images/58c4ade9fa9f15600af2226cd3a1e47a3a7342e0ebe58f86184fad3afeb6dd33.png" src="../_images/58c4ade9fa9f15600af2226cd3a1e47a3a7342e0ebe58f86184fad3afeb6dd33.png" />
+<img alt="../_images/b20cce9256707408c753cb369cde13979bb47a56ecf4acd9dee9724522a281c5.png" src="../_images/b20cce9256707408c753cb369cde13979bb47a56ecf4acd9dee9724522a281c5.png" />
+<img alt="../_images/6c8da56c20acc845094a4362f90b2ef9166462fb2caa60a8321454ff68fef202.png" src="../_images/6c8da56c20acc845094a4362f90b2ef9166462fb2caa60a8321454ff68fef202.png" />
+<img alt="../_images/bce48ad433f3e7bc34554e36347a3a1a46794e305dcf4c873b54f505dc589e55.png" src="../_images/bce48ad433f3e7bc34554e36347a3a1a46794e305dcf4c873b54f505dc589e55.png" />
+<img alt="../_images/7b5c2e20bd43264979a9f228d42319af8e964ceb52e32f5746e31fb8b95824bb.png" src="../_images/7b5c2e20bd43264979a9f228d42319af8e964ceb52e32f5746e31fb8b95824bb.png" />
+<img alt="../_images/55c04d3c0e03f1764b62ec4bca074d8d6e91c9b15d985baf20f5b701d03a860c.png" src="../_images/55c04d3c0e03f1764b62ec4bca074d8d6e91c9b15d985baf20f5b701d03a860c.png" />
+<img alt="../_images/16e6ee8077f761d2d9828a2d35c05062473836ff7c871be18ead7e262dc5c017.png" src="../_images/16e6ee8077f761d2d9828a2d35c05062473836ff7c871be18ead7e262dc5c017.png" />
+<img alt="../_images/8b75e6318bde0419052352fdcbc266fe12a5589cd654805632dfd0d7bd29211a.png" src="../_images/8b75e6318bde0419052352fdcbc266fe12a5589cd654805632dfd0d7bd29211a.png" />
+<img alt="../_images/477c362570284a8260940a6cc83dd0caf300dbc0990247376ed4480e09d8143a.png" src="../_images/477c362570284a8260940a6cc83dd0caf300dbc0990247376ed4480e09d8143a.png" />
+<img alt="../_images/24c5126d3e6096c26057d71c3a2052cd83eda297defe5cc3afb90932e466e423.png" src="../_images/24c5126d3e6096c26057d71c3a2052cd83eda297defe5cc3afb90932e466e423.png" />
+<img alt="../_images/b465808455718a612ad738f777303d1a888ccc87d747867e796930b1536dadfa.png" src="../_images/b465808455718a612ad738f777303d1a888ccc87d747867e796930b1536dadfa.png" />
+<img alt="../_images/fbcd8e15777e20e0b416b7500554d817c3a70b81aa791530349918dc61fbd3c6.png" src="../_images/fbcd8e15777e20e0b416b7500554d817c3a70b81aa791530349918dc61fbd3c6.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">affiche_clusters</span><span class="p">(</span><span class="s2">&quot;CAH (Ward) 2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0711fa44d96c8eb8ba5db5759a02464c6931ae51eaed1de7bd1b741f2f65ab60.png" src="../_images/0711fa44d96c8eb8ba5db5759a02464c6931ae51eaed1de7bd1b741f2f65ab60.png" />
+<img alt="../_images/66f8816139599a50b1106fbb7ac7a7d133c18d5b0dedb64e9e013ccdead9c21f.png" src="../_images/66f8816139599a50b1106fbb7ac7a7d133c18d5b0dedb64e9e013ccdead9c21f.png" />
+<img alt="../_images/9724a890656e9144774bae932c425f27470a9d51b2ee0a6715bdda9dc42fba52.png" src="../_images/9724a890656e9144774bae932c425f27470a9d51b2ee0a6715bdda9dc42fba52.png" />
+<img alt="../_images/61962d516a841fe397e48f1eb3acd2039d5b128d547b639f940cb16a34d819e2.png" src="../_images/61962d516a841fe397e48f1eb3acd2039d5b128d547b639f940cb16a34d819e2.png" />
+<img alt="../_images/fb27a756a54008ee7fd7eca2d2e3cfdac59ba2c662a3bee2c501a10c8aa3fec2.png" src="../_images/fb27a756a54008ee7fd7eca2d2e3cfdac59ba2c662a3bee2c501a10c8aa3fec2.png" />
+<img alt="../_images/1d3df938d973eb09dcdb659c491e78841511c210140d8b7d292d1f022424f677.png" src="../_images/1d3df938d973eb09dcdb659c491e78841511c210140d8b7d292d1f022424f677.png" />
+<img alt="../_images/e2d3e5e67f8c12afab2b07649b7ad4aa05294cbc335e67a550c97f9501bc8f11.png" src="../_images/e2d3e5e67f8c12afab2b07649b7ad4aa05294cbc335e67a550c97f9501bc8f11.png" />
+<img alt="../_images/2a440379b151d31c0c06685f372915a2f412435a0e218e58a07e158da020daaa.png" src="../_images/2a440379b151d31c0c06685f372915a2f412435a0e218e58a07e158da020daaa.png" />
+<img alt="../_images/fbadde212a80da4b92b68a611d6036a32a73c46e15f3572b96dce5ffe6350e43.png" src="../_images/fbadde212a80da4b92b68a611d6036a32a73c46e15f3572b96dce5ffe6350e43.png" />
+<img alt="../_images/245bc8335c9d0d6a09e2d60c9a67be6af221236570e8ea8622b1706bf7f36e2d.png" src="../_images/245bc8335c9d0d6a09e2d60c9a67be6af221236570e8ea8622b1706bf7f36e2d.png" />
+<img alt="../_images/f1948e73cfab653c709d44d3c09ac5ef6bf01f3f23634f36b99f1c1386fccd2b.png" src="../_images/f1948e73cfab653c709d44d3c09ac5ef6bf01f3f23634f36b99f1c1386fccd2b.png" />
+<img alt="../_images/881886e7a1724a86b19fa39f7480f9968ba3781b4d787e0d7ea88ee81b8eb696.png" src="../_images/881886e7a1724a86b19fa39f7480f9968ba3781b4d787e0d7ea88ee81b8eb696.png" />
+<img alt="../_images/95e0dc7c4422b390bf176d5f813e6a38edc2be9b257360d620609ad5c8e87e22.png" src="../_images/95e0dc7c4422b390bf176d5f813e6a38edc2be9b257360d620609ad5c8e87e22.png" />
+<img alt="../_images/2f8fbc5c8e2ea5dd22b40d07da82ea6e77f5d50fa18cebf31b4114f73c0f7047.png" src="../_images/2f8fbc5c8e2ea5dd22b40d07da82ea6e77f5d50fa18cebf31b4114f73c0f7047.png" />
+<img alt="../_images/07aea331926150a2f0420e205ea1ccce2c1538987dc0aa6a8cc446da7567c4d1.png" src="../_images/07aea331926150a2f0420e205ea1ccce2c1538987dc0aa6a8cc446da7567c4d1.png" />
+<img alt="../_images/4287ce9e101296522e17abbff5c0817a659098b8a65d387ba94f45c17371c837.png" src="../_images/4287ce9e101296522e17abbff5c0817a659098b8a65d387ba94f45c17371c837.png" />
+<img alt="../_images/2cf571e00bfd5b8ee6f36251a538aa4a7f0b5981867297c1e3ef9857ea631520.png" src="../_images/2cf571e00bfd5b8ee6f36251a538aa4a7f0b5981867297c1e3ef9857ea631520.png" />
+<img alt="../_images/11bcde372e5749115e043060e21afdb058084cd38ab4924b7dfe779b41d5a32a.png" src="../_images/11bcde372e5749115e043060e21afdb058084cd38ab4924b7dfe779b41d5a32a.png" />
+<img alt="../_images/ae8d5b788a7c6c56c004c594c90df0e144b7886a57a35fe589c45921d81f041b.png" src="../_images/ae8d5b788a7c6c56c004c594c90df0e144b7886a57a35fe589c45921d81f041b.png" />
+<img alt="../_images/25f2afb8963a51662a52ea2da264d2248e85bdd83d1e022423a39eb8c9596088.png" src="../_images/25f2afb8963a51662a52ea2da264d2248e85bdd83d1e022423a39eb8c9596088.png" />
+<img alt="../_images/c479d8689a2296ceabf52c4e1334a3c0b995f47ff3cb888ec5e8090d51410716.png" src="../_images/c479d8689a2296ceabf52c4e1334a3c0b995f47ff3cb888ec5e8090d51410716.png" />
+<img alt="../_images/3383efb55b9c1a8d84f8467d79ec16ea49c22c3e3d8fd7270763051d2f7ae6a5.png" src="../_images/3383efb55b9c1a8d84f8467d79ec16ea49c22c3e3d8fd7270763051d2f7ae6a5.png" />
+<img alt="../_images/cf5d5ecf583f7f5a5ef261a1633ce71e968950fabe51d4b474c46fa4f144a8b1.png" src="../_images/cf5d5ecf583f7f5a5ef261a1633ce71e968950fabe51d4b474c46fa4f144a8b1.png" />
+<img alt="../_images/30a9956598dc18e234a997fee1a429096e79fa2656b6841eae46abb799896b26.png" src="../_images/30a9956598dc18e234a997fee1a429096e79fa2656b6841eae46abb799896b26.png" />
+<img alt="../_images/a5de9c3bc6118094d075d3727bdd1265d21aacefad81d32c3ecc7ad29cad1760.png" src="../_images/a5de9c3bc6118094d075d3727bdd1265d21aacefad81d32c3ecc7ad29cad1760.png" />
+<img alt="../_images/6643d2d71f717ea43447a0b8bad0303901eb2434d908ffa3478517e25019a0b9.png" src="../_images/6643d2d71f717ea43447a0b8bad0303901eb2434d908ffa3478517e25019a0b9.png" />
+<img alt="../_images/70fb2cb7d43fd604946a296715f50d81c0a4cfd78e127bfb4630de19072923bb.png" src="../_images/70fb2cb7d43fd604946a296715f50d81c0a4cfd78e127bfb4630de19072923bb.png" />
+<img alt="../_images/2ce82684d127bb2c69f533c10e052e3701c8f36b397ddd7cacf14da646dfcadb.png" src="../_images/2ce82684d127bb2c69f533c10e052e3701c8f36b397ddd7cacf14da646dfcadb.png" />
+<img alt="../_images/ef6af4a7c5a4d0369081353d6f3995dd82a265a73c1cdec0a494dec0ca788d4e.png" src="../_images/ef6af4a7c5a4d0369081353d6f3995dd82a265a73c1cdec0a494dec0ca788d4e.png" />
+<img alt="../_images/bdeae22c8fdc6269fb2921885b1d6a0c4460492b0b98ba00fa9d793dcab3f6bc.png" src="../_images/bdeae22c8fdc6269fb2921885b1d6a0c4460492b0b98ba00fa9d793dcab3f6bc.png" />
+</div>
+</div>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p><strong>Tableau.</strong> Description des clients types</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Profil</p></th>
+<th class="head text-right"><p>Proportion</p></th>
+<th class="head text-left"><p>Education</p></th>
+<th class="head text-left"><p>Revenu</p></th>
+<th class="head text-right"><p>Campagnes<br>acceptées</p></th>
+<th class="head text-left"><p>Enfants</p></th>
+<th class="head text-left"><p>Dépenses</p></th>
+<th class="head text-right"><p>Année de<br/>naissance</p></th>
+<th class="head text-left"><p>Site Internet</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Clients qui achètent</p></td>
+<td class="text-right"><p>30%</p></td>
+<td class="text-left"><p>Bac - doctorat</p></td>
+<td class="text-left"><p>Élevé</p></td>
+<td class="text-right"><p>0-4</p></td>
+<td class="text-left"><p>0 bas-âge <br/> 0-1 ado</p></td>
+<td class="text-left"><p>Élevées</p></td>
+<td class="text-right"><p>1970</p></td>
+<td class="text-left"><p>Peu de visites</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Clients qui n’achètent pas ou peu</p></td>
+<td class="text-right"><p>68% - 70%</p></td>
+<td class="text-left"><p>Brevet - doctorat</p></td>
+<td class="text-left"><p>Moyen</p></td>
+<td class="text-right"><p>0-1</p></td>
+<td class="text-left"><p>0-3 enfants<br/>(bas-âge et ado)</p></td>
+<td class="text-left"><p>Peu élevées</p></td>
+<td class="text-right"><p>1970</p></td>
+<td class="text-left"><p>Beaucoup de visites</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Clients qui n’achètent pas (n=3)</p></td>
+<td class="text-right"><p>2%</p></td>
+<td class="text-left"><p>Brevet</p></td>
+<td class="text-left"><p>Le plus faible</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-left"><p>0-1 bas-âge <br/> 0 ado</p></td>
+<td class="text-left"><p>Aucune</p></td>
+<td class="text-right"><p>1980</p></td>
+<td class="text-left"><p>Beaucoup de visites</p></td>
+</tr>
+</tbody>
+</table>
+<p>Notons aussi que parmi les clients qui achètent, la proportion d’acceptation des campagnes est beaucoup plus élevée.</p>
+</section>
+<section id="pour-aller-plus-loin">
+<h2>Pour aller plus loin<a class="headerlink" href="#pour-aller-plus-loin" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>tester la stabilité des clusters (ici, l’initialisation des algorithmes a un impact significatif sur les clusters trouvés)</p></li>
+<li><p>tester les différents paramètres de chacun des algorithmes de clusters pour comparaison</p></li>
+<li><p>tester les algorithmes de clustering sur différents sous-ensembles de variables pour exhiber différents groupes</p></li>
+</ul>
+</section>
+<section id="sauvegarde-des-donnees">
+<h2>Sauvegarde des données<a class="headerlink" href="#sauvegarde-des-donnees" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">## todo: sauvegarder les clusters</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="06-anova.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">ANOVA</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="08-regressions.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Régression (v1)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-des-outils-jeu-de-donnees">Import des outils / jeu de données</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-globales">Variables globales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Clustering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation-des-donnees">Préparation des données</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differents-algorithmes-de-clustering">Différents algorithmes de clustering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisation">Visualisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pour-aller-plus-loin">Pour aller plus loin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sauvegarde-des-donnees">Sauvegarde des données</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ab2nour, jExbrayat
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023, Ab2nour, jExbrayat.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
